@@ -13,36 +13,8 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/getCoordinates.js'])
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <!-- Get user's location -->
-    <script>
-        $(document).ready(function() {
-            var x = $("#coordinates");
-
-            function getLocation() {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(showPosition);
-                } else {
-                    x.html("Geolocation is not supported by this browser.");
-                }
-            }
-
-            function showPosition(position) {
-                x.html(
-                    "Latitude: " +
-                    position.coords.latitude +
-                    "<br>Longitude: " +
-                    position.coords.longitude
-                );
-
-            }
-
-            // Call the getLocation function to initiate geolocation
-            getLocation();
-        });
-    </script>
 
 </head>
 
