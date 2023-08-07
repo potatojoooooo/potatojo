@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Geolocation Social Website') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -15,7 +15,8 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Add this in your blade.php file -->
+
+    <!-- Get user's location -->
     <script>
         $(document).ready(function() {
             var x = $("#coordinates");
@@ -35,6 +36,7 @@
                     "<br>Longitude: " +
                     position.coords.longitude
                 );
+
             }
 
             // Call the getLocation function to initiate geolocation
@@ -53,7 +55,7 @@
         <header class="bg-white dark:bg-gray-800 shadow">
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 {{ $header }}
-                <p id="coordinates"></p>
+                <h1 id="coordinates"></h1>
             </div>
         </header>
         @endif

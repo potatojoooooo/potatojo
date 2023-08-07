@@ -4,23 +4,32 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Stevebauman\Location\Facades\Location;
+use App\Models\User;
 
 class UserController extends Controller
 {
     public function index()
     {
-        
+
         // Get the user's location.
         $location = Location::get();
 
         return view('details', compact('location'));
     }
 
-    public function getCurrentPosition(Request $request) {
-        // Get the position
-        $position = $request->input('position');
-      
-        // Do something with the position
-        return view('details');
-      }
+    // public function storeCoordinates(Request $request)
+    // {
+    //     // Get the coordinates from the request
+    //     $latitude = $request->get('latitude');
+    //     $longitude = $request->get('longitude');
+
+    //     // Store the coordinates in the database
+    //     $user = User::find(auth()->user()->id);
+    //     $user->latitude = $latitude;
+    //     $user->longitude = $longitude;
+    //     $user->save();
+
+    //     // Return a success message
+    //     return response()->json(['success' => true]);
+    // }
 }
