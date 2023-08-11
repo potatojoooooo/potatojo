@@ -11,10 +11,6 @@ class UserController extends Controller
     public function index()
     {
 
-        // Get the user's location.
-        $location = Location::get();
-
-        return view('details', compact('location'));
     }
 
     // public function storeCoordinates(Request $request)

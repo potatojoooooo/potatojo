@@ -16,9 +16,11 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('location')->nullable();
+            $table->dateTime('date');
             $table->dateTime('start_time');
             $table->dateTime('end_time');
-            $table->integer('user_id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
