@@ -22,6 +22,14 @@
                                 </tr>
                                 <tr class="border-b bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
                                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        Description:
+                                    </td>
+                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        {{$event -> description}}
+                                    </td>
+                                </tr>
+                                <tr class="border-b bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         Location:
                                     </td>
                                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -65,13 +73,13 @@
                                         <div class="justify-between">
                                             @if ($isCreator)
                                             <x-primary-button class="text-center">
-                                                <a href="{{ route('events.edit', $event->id)}}">{{ __('Edit event') }}</a>
+                                                <a href="{{ route('events.edit', $event->id)}}">{{ __('Edit') }}</a>
                                             </x-primary-button>
                                             <form method="POST" action="{{ route('events.destroy', $event->id) }}" style="display: inline;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <x-primary-button class="text-center focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
-                                                    <a href="{{ route('events.edit', $event->id)}}">{{ __('Delete event') }}</a>
+                                                <x-primary-button class="text-center focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 ">
+                                                    <a href="{{ route('events.edit', $event->id)}}" class="text-white">{{ __('Delete') }}</a>
                                                 </x-primary-button>
                                             </form>
                                             @else
