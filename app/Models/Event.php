@@ -15,6 +15,7 @@ class Event extends Model
         'name',
         'description',
         'location',
+        'date',
         'start_time',
         'end_time',
         'user_id',
@@ -22,6 +23,6 @@ class Event extends Model
 
     public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

@@ -30,14 +30,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/events/create', function () {
-    return view('event-form');
-});
-
-Route::get('session/get', [SessionController::class, 'accessSessionData']);
-Route::get('session/set', [SessionController::class, 'storeSessionData']);
-Route::get('session/remove', 'SessionController@deleteSessionData');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -56,5 +48,7 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/{event}', [EventController::class, 'destroy'])->name('events.destroy');
     });
 });
+
+
 
 require __DIR__ . '/auth.php';

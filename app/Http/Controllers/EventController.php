@@ -22,14 +22,14 @@ class EventController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'location' => 'nullable|string|max:255',
-            'date' => 'required|date',
-            'start_time' => 'required|date_format:H:i',
-            'end_time' => 'required|date_format:H:i|after:start_time',
-        ]);
+        // $request->validate([
+        //     'name' => 'required|string|max:255',
+        //     'description' => 'required|string',
+        //     'location' => 'required|string',
+        //     'date' => 'required|date',
+        //     'start_time' => 'required|date_format:HH:mm',
+        //     'end_time' => 'required|date_format:HH:mm|after:start_time',
+        // ]);
 
         $event = new Event([
             'name' => $request->name,
@@ -43,8 +43,10 @@ class EventController extends Controller
 
         $event->save();
 
-        return redirect()->route('events.index')->with('success', 'Event created successfully.');
+        return redirect()->route('events.index')
+            ->with('success', 'Product created successfully.');
     }
+
     public function show($id)
     {
         // Find the event by ID

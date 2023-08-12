@@ -12,7 +12,7 @@
         <p>Date: {{ $event->date }}</p>
         <p>Start Time: {{ $event->start_time }}</p>
         <p>End Time: {{ $event->end_time }}</p>
-        <p>Created By: {{ $event->user->name }}</p>
+        <p>Created By: {{ $event->users->name }}</p>
         @if ($isCreator)
         <a href="{{ route('events.edit', $event->id) }}" class="btn btn-primary">Edit Event</a>
         <form method="POST" action="{{ route('events.destroy', $event->id) }}" style="display: inline;">

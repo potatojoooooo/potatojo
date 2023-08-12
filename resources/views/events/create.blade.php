@@ -9,45 +9,55 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                <form action="/events" method="post">
-                    @csrf
-
-                    <div>
-                        <x-input-label for="title" :value="__('Name')" />
-                        <x-text-input id="title" class="block mt-1 w-full" type="text" name="title" required autofocus autocomplete="name" />
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
                     </div>
+                    @endif
+                    <form method="POST" action="{{ route('events.store') }}">
+                        @csrf
 
-                    <div>
-                        <x-input-label class="mt-4" for="description" :value="__('Description')" />
-                        <textarea id="message" rows="4" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm block mt-1 w-full" placeholder="Write event's description here..."></textarea>
-                    </div>
+                        <div>
+                            <x-input-label :value="__('Name')" />
+                            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" required autofocus autocomplete="name" />
+                        </div>
 
-                    <div class="form-group">
-                        <x-input-label class="mt-4" for="date" :value="__('Date')" />
-                        <x-text-input style="-webkit-calendar-picker-indicator: white" id="date" class="block mt-1 w-full" type="date" name="title" required autofocus autocomplete="date" />
-                    </div>
+                        <div>
+                            <x-input-label class="mt-4" :value="__('Description')" />
+                            <textarea name="description" rows="4" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm block mt-1 w-full" placeholder="Write event's description here..." required autofocus></textarea>
+                        </div>
 
-                    <div class="form-group">
-                        <x-input-label class="mt-4" for="time" :value="__('Start time')" />
-                        <x-text-input id="time" class="block mt-1 w-full" type="time" name="time" required autofocus autocomplete="time" />
-                    </div>
+                        <div class="form-group">
+                            <x-input-label class="mt-4" :value="__('Location')" />
+                            <x-text-input class="block mt-1 w-full" type="text" name="location" required autofocus autocomplete="location" />
+                        </div>
 
-                    <div class="form-group">
-                        <x-input-label class="mt-4" for="time" :value="__('End time')" />
-                        <x-text-input id="time" class="block mt-1 w-full" type="time" name="time" required autofocus autocomplete="time" />
-                    </div>
+                        <div class="form-group">
+                            <x-input-label class="mt-4" :value="__('Date')" />
+                            <x-text-input class="block mt-1 w-full" type="date" name="date" required autofocus autocomplete="date" />
+                        </div>
 
-                    <div class="form-group">
-                        <x-input-label class="mt-4" for="location" :value="__('Location')" />
-                        <x-text-input id="location" class="block mt-1 w-full" type="text" name="location" required autofocus autocomplete="location" />
-                    </div>
+                        <div class="form-group">
+                            <x-input-label class="mt-4" :value="__('Start time')" />
+                            <x-text-input class="block mt-1 w-full" type="time" name="start_time" required autofocus autocomplete="time" />
+                        </div>
 
-                    <div class="flex items-center justify-center mt-4">
-                        <x-primary-button class="text-center">
-                            {{ __('Create Event') }}
-                        </x-primary-button>
-                    </div>
-                </form>
+                        <div class="form-group">
+                            <x-input-label class="mt-4" for="end_time" :value="__('End time')" />
+                            <x-text-input class="block mt-1 w-full" type="time" name="end_time" required autofocus autocomplete="time" />
+                        </div>
+
+                        <div class="flex items-center justify-center mt-4">
+                            <x-primary-button class="ml-4">
+                                {{ __('Create event') }}
+                            </x-primary-button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

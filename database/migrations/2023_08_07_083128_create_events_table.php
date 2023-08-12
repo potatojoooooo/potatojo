@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
-            $table->string('location')->nullable();
-            $table->dateTime('date');
-            $table->dateTime('start_time');
-            $table->dateTime('end_time');
+            $table->string('location');
+            $table->date('date');
+            $table->time('start_time');
+            $table->time('end_time');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
