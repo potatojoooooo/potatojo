@@ -18,8 +18,8 @@
                         <th scope="col" class="px-6 py-3 text-gray-900 dark:text-gray-100">
                             Name
                         </th>
-                        <th scope="col" class="px-6 py-3 text-gray-900 dark:text-gray-100">
-                            Description
+                        <th scope="col" class="px-6 py-3 text-gray-900 dark:text-gray-100 text-ellipsis">
+                            Location
                         </th>
                         <th scope="col" class="px-6 py-3 text-gray-900 dark:text-gray-100">
                             Date
@@ -42,7 +42,7 @@
                             {{$event -> name}}
                         </th>
                         <td class="px-6 py-4">
-                            {{$event -> description}}
+                            {{$event -> location}}
                         </td>
                         <td class="px-6 py-4">
                             {{$event -> date}}
@@ -54,7 +54,9 @@
                             {{$event -> users -> name}}
                         </td>
                         <td class="px-6 py-4">
-                            <a href="{{ route('events.show', $event->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">View event</a>
+                            <x-primary-button class="text-center">
+                                <a href="{{ route('events.show', $event->id)}}">{{ __('View details') }}</a>
+                            </x-primary-button>
                         </td>
                     </tr>
                     @endforeach
