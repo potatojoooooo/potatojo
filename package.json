@@ -21,7 +21,10 @@
         "vue": "^3.2.37"
     },
     "dependencies": {
+        "@googlemaps/js-api-loader": "^1.16.2",
         "@rapideditor/country-coder": "^5.2.1",
-        "bootstrap-icons": "^1.10.5"
+        "bootstrap-icons": "^1.10.5",
+        "google-maps": "^4.3.3",
+        "laravel-mix": "^6.0.49"
     }
 }

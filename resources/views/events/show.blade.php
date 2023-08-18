@@ -8,63 +8,63 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-12">
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="display: inline-flex;">
             <div class="p-6 text-gray-900 dark:text-gray-100">
-                <div class="row">
+                <div class="row ">
                     <div class="col-md-4">
-                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
                             <tbody>
                                 <tr class="border-b bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
                                         Event:
                                     </td>
-                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
                                         {{$event -> name}}
                                     </td>
                                 </tr>
                                 <tr class="border-b bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
                                         Description:
                                     </td>
-                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
                                         {{$event -> description}}
                                     </td>
                                 </tr>
                                 <tr class="border-b bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
                                         Location:
                                     </td>
-                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
                                         {{$event -> location}}
                                     </td>
                                 </tr>
                                 <tr class="border-b bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
                                         Date:
                                     </td>
-                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
                                         {{$event -> date}}
                                     </td>
                                 </tr>
                                 <tr class="border-b bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
                                         Start time:
                                     </td>
-                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
                                         {{$event -> start_time}}
                                     </td>
                                 </tr>
                                 <tr class="border-b bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
                                         End time:
                                     </td>
-                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
                                         {{$event -> end_time}}
                                     </td>
                                 </tr>
                                 <tr class="border-b bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
                                         Created by:
                                     </td>
-                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
                                         {{$event -> users -> name}}
                                     </td>
                                 </tr>

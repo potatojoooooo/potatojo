@@ -34,7 +34,7 @@
 
                         <div class="form-group">
                             <x-input-label class="mt-4" :value="__('Location')" />
-                            <x-text-input class="block mt-1 w-full" type="text" name="location" required autofocus autocomplete="location" />
+                            <x-text-input class="block mt-1 w-full" type="text" name="location" id="location" required autofocus autocomplete="location" />
                         </div>
 
                         <div class="form-group">
@@ -62,4 +62,14 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACqi-a5Hr_6Wcf2UhrVAhYqPTwYD2hTvM&libraries=places"></script>
+    <script>
+        $(document).ready(function() {
+            var autocomplete;
+            var to = 'location';
+            autocomplete = new google.maps.places.Autocomplete((document.getElementById(to)), {
+                types: ['geocode'],
+            })
+        });
+    </script>
 </x-app-layout>

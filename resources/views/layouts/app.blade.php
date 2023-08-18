@@ -13,9 +13,31 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/getCoordinates.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/getCoordinates.js', 'resources/js/script.js'])
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </script>
+    <script>
+        function initMap() {
+            console.log('Maps JavaScript API loaded.');
 
+            const advancedMarkers = document.querySelectorAll("#marker-click-event-example gmp-advanced-marker");
+            for (const advancedMarker of advancedMarkers) {
+                customElements.whenDefined(advancedMarker.localName).then(async () => {
+                    advancedMarker.addEventListener('gmp-click', async () => {
+                        const {
+                            InfoWindow
+                        } = await google.maps.importLibrary("maps");
+                        const infoWindow = new InfoWindow({
+                            content: advancedMarker.title
+                        });
+                        infoWindow.open({
+                            anchor: advancedMarker
+                        });
+                    });
+                });
+            }
+        }
+    </script>
 </head>
 
 <body class="font-sans antialiased">
