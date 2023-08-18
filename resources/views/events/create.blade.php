@@ -57,6 +57,10 @@
                                 {{ __('Create event') }}
                             </x-primary-button>
                         </div>
+                        <input type="text" id="lat" name="lat">
+                        <input type="text" id="long" name="long">
+                        <input type="text" id="ip" name="ip">
+                        <!-- change to type="hidden" -->
                     </form>
                 </div>
             </div>
@@ -69,7 +73,18 @@
             var to = 'location';
             autocomplete = new google.maps.places.Autocomplete((document.getElementById(to)), {
                 types: ['geocode'],
-            })
+            });
+
+            google.maps.event.addListener(autocomplete, 'place_changed', function() {
+                var near_place = autocomplete.getPlace();
+                jQuery("#lat").val(near_place.geometry.location.lat());
+                jQuery("#long").val(near_place.geometry.location.lng());
+
+                $.getJSON("https://api.ipify.org/?format=json", function(data){
+                    let ip = data.ip;
+                    jQuery("#ip").val(ip);
+                });
+            });
         });
     </script>
 </x-app-layout>
