@@ -60,6 +60,9 @@
                         <input type="text" id="lat" name="lat">
                         <input type="text" id="long" name="long">
                         <input type="text" id="ip" name="ip">
+                        <input type="text" id="city" name="city">
+                        <input type="text" id="dtime" name="dtime">
+                        <input type="text" id="dkm" name="dkm">
                         <!-- change to type="hidden" -->
                     </form>
                 </div>
@@ -80,11 +83,60 @@
                 jQuery("#lat").val(near_place.geometry.location.lat());
                 jQuery("#long").val(near_place.geometry.location.lng());
 
-                $.getJSON("https://api.ipify.org/?format=json", function(data){
+                $.getJSON("https://api.ipify.org/?format=json", function(data) {
                     let ip = data.ip;
                     jQuery("#ip").val(ip);
+                    getCity(ip);
                 });
             });
         });
+
+        function getCity(ip) {
+
+            var req = new XMLHttpRequest();
+            req.open("GET", "http://ip-api.com/json/" + ip, true);
+            req.send();
+            req.onreadystatechange = function() {
+                if (req.readyState == 4 && req.status == 200) {
+                    var obj = JSON.parse(req.responseText);
+                    console.log(obj);
+                    jQuery("#city").val(obj.city);
+                    calculateDistance();
+                }
+            }
+        }
+
+        function calculateDistance() {
+            var to = jQuery("#city").val();
+            var from = jQuery("#location").val();
+
+            var service = new google.maps.DistanceMatrixService();
+            service.getDistanceMatrix({
+                origins: [to],
+                destinations: [from],
+                travelMode: google.maps.TravelMode.DRIVING,
+                unitSystem: google.maps.UnitSystem.metric,
+                avoidHighways: false,
+                avoidTolls: false,
+            }, callback);
+        }
+
+        function callback(response, status) {
+            if (status != google.maps.DistanceMatrixStatus.OK) {
+                console.log("Something wrong");
+            } else {
+                if (response.rows[0].elements[0].status == "ZERO_RESULTS") {
+                    console.log("No roads");
+                } else {
+                    var distance = response.rows[0].elements[0].distance;
+                    var duration = response.rows[0].elements[0].duration;
+                    var dkm = distance.value/1000;
+                    console.log(distance, duration, dkm);
+                    jQuery("#dtime").val(duration.text);
+                    jQuery("#dkm").val(distance.text);
+                }
+
+            }
+        }
     </script>
 </x-app-layout>

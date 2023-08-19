@@ -19,10 +19,10 @@ $(document).ready(function () {
                 "<br>Longitude: " +
                 position.coords.longitude
         );
-        getAddressFrom(
-            position.coords.latitude,
-            position.coords.longitude
-        );
+        // getAddressFrom(
+        //     position.coords.latitude,
+        //     position.coords.longitude
+        // );
 
         // set coordinates into session
         sessionStorage.setItem("longitude", position.coords.longitude);
