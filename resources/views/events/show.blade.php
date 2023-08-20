@@ -78,17 +78,16 @@
                                             <form method="POST" action="{{ route('events.destroy', $event->id) }}" style="display: inline;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <x-primary-button class="text-center focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 ">
+                                                <x-primary-button class="text-center focus:outline-none text-white bg-red-700  focus:ring-4 focus:ring-red-300 dark:bg-red-600  dark:focus:ring-red-900 ">
                                                     <a href="{{ route('events.edit', $event->id)}}" class="text-white">{{ __('Delete') }}</a>
                                                 </x-primary-button>
                                             </form>
                                             @else
-                                            <x-primary-button class="">
+                                            <x-primary-button class="" id="join-event-button">
                                                 {{ __('Join event') }}
                                             </x-primary-button>
                                             @endif
                                         </div>
-
                                     </td>
                                 </tr>
                             </tbody>
