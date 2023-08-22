@@ -20,7 +20,7 @@ $(document).ready(function() {
     });
 });
 
-// get the city current of current user
+// get the city of current user
 function getCity(ip) {
 
     var req = new XMLHttpRequest();

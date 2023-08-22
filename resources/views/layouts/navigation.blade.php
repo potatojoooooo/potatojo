@@ -20,8 +20,8 @@
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                         {{ __('Home') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                        {{ __('Messages') }}
+                    <x-nav-link :href="route('events.index')" :active="request()->routeIs('events.index')">
+                        {{ __('Events') }}
                     </x-nav-link>
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                         {{ __('UTAR') }}
