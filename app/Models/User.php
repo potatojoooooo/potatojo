@@ -51,6 +51,26 @@ class User extends Authenticatable
 
     public function events()
     {
-        return $this->hasMany(Event::class);
+        return $this->hasMany(Event::class, 'user_id');
+    }
+
+    public function checkins()
+    {
+        return $this->hasMany(CheckIn::class, 'user_id');
+    }
+
+    public function friendships()
+    {
+        return $this->belongsToMany(User::class, 'friendships', 'user_id_1', 'user_id_2')
+            ->withPivot('friendship_status');
+    }
+
+    public function interests() {
+        return $this->belongsToMany(Interest::class, 'user_interests');
+    }
+
+    public function eventParticipants() {
+        return $this->belongsToMany(Event::class, 'event_participants')
+                    ->withPivot('participation_status');
     }
 }

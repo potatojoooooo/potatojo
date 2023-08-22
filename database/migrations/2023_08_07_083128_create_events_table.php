@@ -19,6 +19,9 @@ return new class extends Migration
             $table->date('date');
             $table->time('start_time');
             $table->time('end_time');
+            $table->double('longitude', 15, 8);
+            $table->double('latitude', 15, 8);
+            $table->integer('participants_needed');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
