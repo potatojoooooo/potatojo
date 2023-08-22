@@ -15,15 +15,19 @@ class EventParticipantsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::first();
-        $event = Event::first();
+        $users = User::whereIn('id', [1, 2, 3])->get(); // Replace with desired user IDs
+        $events = Event::whereIn('id', [1, 2])->get(); // Replace with desired event IDs
 
-        DB::table('event_participants')->insert([
-            'user_id' => $user->id,
-            'event_id' => $event->id,
-            'participation_status' => true,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        foreach ($users as $user) {
+            foreach ($events as $event) {
+                DB::table('event_participants')->insert([
+                    'user_id' => $user->id,
+                    'event_id' => $event->id,
+                    'participation_status' => true,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
+        }
     }
 }

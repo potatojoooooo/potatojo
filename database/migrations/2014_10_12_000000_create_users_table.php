@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('bio')->nullable();
             $table->double('longitude', 15, 8)->nullable();
             $table->double('latitude', 15, 8)->nullable();
-            $table->boolean('allow_location_sharing');
+            $table->boolean('allow_location_sharing')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

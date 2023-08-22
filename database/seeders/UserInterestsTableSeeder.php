@@ -15,14 +15,18 @@ class UserInterestsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::first();
-        $interest = Interest::first();
+        $users = User::all();
+        $interests = Interest::take(5)->get();
 
-        DB::table('user_interests')->insert([
-            'user_id' => $user->id,
-            'interest_id' => $interest->id,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        foreach ($users as $user) {
+            foreach ($interests as $interest) {
+                DB::table('user_interests')->insert([
+                    'user_id' => $user->id,
+                    'interest_id' => $interest->id,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
+        }
     }
 }

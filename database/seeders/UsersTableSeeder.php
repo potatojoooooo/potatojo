@@ -26,9 +26,36 @@ class UsersTableSeeder extends Seeder
         User::create([
             'name' => 'joanne_doe',
             'email' => 'joanne@example.com',
-            'password' => Hash::make('password'),
+            'password' => "1234567890",
             'bio' => 'hahahahahahaha',
             'allow_location_sharing' => false,
+            // Other user-related fields
+        ]);
+
+        User::create([
+            'name' => 'testing',
+            'email' => 'testing@example.com',
+            'password' => "1234567890",
+            'bio' => 'long paragraph long paragraph long paragraph long paragraph long paragraph',
+            'allow_location_sharing' => true,
+            // Other user-related fields
+        ]);
+
+        User::create([
+            'name' => 'sam',
+            'email' => 'sam@example.com',
+            'password' => "1234567890",
+            'bio' => 'some long paragaph for bio',
+            'allow_location_sharing' => false,
+            // Other user-related fields
+        ]);
+
+        User::create([
+            'name' => 'lee',
+            'email' => 'lee@example.com',
+            'password' => "1234567890",
+            'bio' => 'this is lee lee lee lee lee lee lee lee',
+            'allow_location_sharing' => true,
             // Other user-related fields
         ]);
     }

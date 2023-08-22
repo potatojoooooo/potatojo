@@ -14,17 +14,20 @@ class FriendshipsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $user1 = User::first();
-        $user2 = User::find(2); // Replace with the desired user
+        $users = User::whereIn('id', [1, 2, 3, 4])->get();
 
-        DB::table('friendships')->insert([
-            'user_id_1' => $user1->id,
-            'user_id_2' => $user2->id,
-            'friendship_status' => 1,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-
-        // Create more friendships as needed
+        foreach ($users as $user1) {
+            foreach ($users as $user2) {
+                if ($user1->id !== $user2->id) {
+                    DB::table('friendships')->insert([
+                        'user_id_1' => $user1->id,
+                        'user_id_2' => $user2->id,
+                        'friendship_status' => 1,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+                }
+            }
+        }
     }
 }

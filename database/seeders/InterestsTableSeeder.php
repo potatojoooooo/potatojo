@@ -13,12 +13,28 @@ class InterestsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Interest::create([
-            'interest' => 'Sports',
-        ]);
+        
+        $interests = [
+            'Sports',
+            'Photography',
+            'Art',
+            'Singing',
+            'Cafe-hopping',
+            'Museums and galleries',
+            'Video games',
+            'Sci-fi film',
+            'Anime',
+            'Coffee',
+            'Bubble tea',
+            'Board games',
+            'Cats',
+            'Dogs',
+        ];
 
-        Interest::create([
-            'interest' => 'Photography',
-        ]);
+        foreach ($interests as $interest) {
+            Interest::create([
+                'interest' => $interest,
+            ]);
+        }
     }
 }
