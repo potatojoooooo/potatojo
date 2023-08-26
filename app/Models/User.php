@@ -24,9 +24,11 @@ class User extends Authenticatable
         'email',
         'password',
         'bio',
-        'interests',
+        'profile_picture',
+        'bio',
         'longitude',
         'latitude',
+        'allow_location_sharing',
     ];
 
     /**
@@ -65,12 +67,14 @@ class User extends Authenticatable
             ->withPivot('friendship_status');
     }
 
-    public function interests() {
+    public function interests()
+    {
         return $this->belongsToMany(Interest::class, 'user_interests');
     }
 
-    public function eventParticipants() {
+    public function eventParticipants()
+    {
         return $this->belongsToMany(Event::class, 'event_participants')
-                    ->withPivot('participation_status');
+            ->withPivot('participation_status');
     }
 }

@@ -3,6 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CheckInsController;
+use App\Http\Controllers\FriendsController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Database\Eloquent\Model;
@@ -18,6 +21,7 @@ use Illuminate\Database\Eloquent\Model;
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -30,12 +34,23 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::post('/accept-friend-request', [FriendsController::class, 'acceptFriendRequest'])->name('accept-friend-request');
+Route::post('/store-coordinates', [DashboardController::class, 'storeCoordinates']);
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 });
 
+Route::middleware('auth')->group(function () {
+    Route::post('/checkins', [CheckInsController::class, 'create'])->name('checkins.create');
+    Route::delete('/checkins/{id}', [CheckInsController::class, 'destroy'])->name('checkins.destroy');
+    
+});
 
 Route::middleware(['auth'])->group(function () {
     Route::prefix('events')->group(function () {

@@ -25,11 +25,7 @@ $(document).ready(function () {
         // );
 
         // set coordinates into session
-        sessionStorage.setItem("longitude", position.coords.longitude);
-        sessionStorage.setItem("latitude", position.coords.latitude);
-
-        console.log(sessionStorage.getItem("longitude"));
-        console.log(sessionStorage.getItem("latitude"));
+    
     }
 
     function getAddressFrom(lat, long) {

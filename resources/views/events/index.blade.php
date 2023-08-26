@@ -52,6 +52,7 @@
                         </td>
                         <td class="px-6 py-4">
                             {{$event -> users -> name}}
+
                         </td>
                         <td class="px-6 py-4">
                             <x-primary-button class="text-center">
