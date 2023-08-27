@@ -61,23 +61,25 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
+                    @if (auth()->user()->allow_location_sharing == 0)
                     {{ __("You're logged in!") }}
-                    <p class="py-3">Enable location sharing to let others know you're in the same area?</p>
-                    <button class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">
-                        <a href="">{{ __('Yes') }}</a>
-                    </button>
-                    <button class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
-                        <a href="" class="text-white">{{ __('No') }}</a>
-                    </button>
+                    <p class="py-3">Enable location sharing to let others know you're in the same area? Head to Profile.</p>
+                    @else
+                    {{ __("You're logged in!") }}
+                    <p class="py-3">Location sharing is already enabled.</p>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
 
+
+
+
     <!-- Recent check-ins -->
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="flex justify-between"> <!-- Use flex-col to stack items vertically -->
-            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight pb-2 pl-2">Recent check-ins</h2>
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight pb-2 pl-2">Your recent check-ins</h2>
             <a href="#" class="underline text-lg text-gray-800 dark:text-gray-200 leading-tight pb-2 pl-2 mt-auto">view all</a>
         </div>
 

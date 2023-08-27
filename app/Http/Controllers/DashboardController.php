@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Session;
-
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -22,10 +22,13 @@ class DashboardController extends Controller
         $longitude = $request->input('longitude');
         $latitude = $request->input('latitude');
 
+        $user = Auth::user();
+        $location_sharing = $user->allow_location_sharing;
+
         Session::put('longitude', $longitude);
         Session::put('latitude', $latitude);
+        Session::put('allow_location_sharing', $location_sharing);
 
-        
 
         return response()->json(['message' => 'Coordinates stored in session']);
     }

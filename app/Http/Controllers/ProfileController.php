@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -51,10 +52,24 @@ class ProfileController extends Controller
         Auth::logout();
 
         $user->delete();
-        
+
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function updateLocationSharing(Request $request)
+    {
+        $newValue = $request->input('newValue', 0);
+
+        // Retrieve the user
+        $user = User::find(auth()->user()->id);
+
+        // Update the allowSharingLocation value
+        $user->allow_location_sharing = $newValue;
+        $user->save();
+
+        return response()->json(['success' => true]);
     }
 }

@@ -39,17 +39,18 @@ Route::post('/accept-friend-request', [FriendsController::class, 'acceptFriendRe
 Route::post('/store-coordinates', [DashboardController::class, 'storeCoordinates']);
 
 
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
+    Route::post('/update-location-sharing', [ProfileController::class, 'updateLocationSharing'])
+        ->name('update-location-sharing');
 });
 
 Route::middleware('auth')->group(function () {
     Route::post('/checkins', [CheckInsController::class, 'create'])->name('checkins.create');
     Route::delete('/checkins/{id}', [CheckInsController::class, 'destroy'])->name('checkins.destroy');
-    
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -64,6 +65,11 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
-
+Route::middleware(['auth'])->group(function () {
+    Route::prefix('home')->group(function () {
+        Route::get('/', [UserController::class, 'index'])->name('home');
+        Route::get('/{user}', [UserController::class, 'show'])->name('users.show');
+    });
+});
 
 require __DIR__ . '/auth.php';
