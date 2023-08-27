@@ -22,13 +22,18 @@ class DashboardController extends Controller
         $longitude = $request->input('longitude');
         $latitude = $request->input('latitude');
 
-        $user = Auth::user();
-        $location_sharing = $user->allow_location_sharing;
+        $user_location = Auth::user();
+        $location_sharing = $user_location->allow_location_sharing;
 
         Session::put('longitude', $longitude);
         Session::put('latitude', $latitude);
         Session::put('allow_location_sharing', $location_sharing);
 
+        // Retrieve the user
+        $user = User::find(auth()->user()->id);
+        $user -> latitude = $latitude;
+        $user -> longitude = $longitude;
+        $user -> save();
 
         return response()->json(['message' => 'Coordinates stored in session']);
     }
