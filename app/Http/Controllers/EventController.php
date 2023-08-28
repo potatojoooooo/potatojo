@@ -14,7 +14,7 @@ class EventController extends Controller
     public function index(Request $request)
     {
         $filteredEvents = [];
-        $maxDistance = 50;
+        $maxDistance = 25;
         $userLatitude = Session::get('latitude');
         $userLongitude = Session::get('longitude');
         $events = Event::select("*")
