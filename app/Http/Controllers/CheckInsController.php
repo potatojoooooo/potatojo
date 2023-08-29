@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Session;
 use App\Models\CheckIn;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,14 +13,30 @@ class CheckInsController extends Controller
     {
         $user = Auth::user();
         $checkIns = CheckIn::where('user_id', $user->id)
-            ->orderBy('check_in_time', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('checkins.index', ['checkIns' => $checkIns]);
+    }
+
+    public function latest()
+    {
+        $user = Auth::user();
+        $checkIns = CheckIn::where('user_id', $user->id)
+            ->orderBy('created_at', 'desc')
             ->take(3) // Retrieve the latest 3 check-ins
             ->get();
 
         return $checkIns;
     }
 
-    public function create(Request $request)
+    public function create()
+    {
+        return view('checkins.create');
+    }
+
+
+    public function store(Request $request)
     {
         // Validate the input data
         $validatedData = $request->validate([
@@ -27,15 +44,18 @@ class CheckInsController extends Controller
             'check_in_notes' => 'nullable|max:255',
         ]);
 
-        // Create a new check-in
+        $userLatitude = Session::get('latitude');
+        $userLongitude = Session::get('longitude');
+
         $checkIn = new CheckIn;
         $checkIn->user_id = auth()->user()->id;
         $checkIn->location = $validatedData['location'];
         $checkIn->check_in_notes = $validatedData['check_in_notes'];
-        $checkIn->check_in_time = now();
+        $checkIn->longitude = $userLongitude;
+        $checkIn->latitude = $userLatitude;
         $checkIn->save();
 
-        return redirect()->route('dashboard')->with('success', 'Check-in created successfully.');
+        return redirect()->route('checkins.index')->with('success', 'Check-in created successfully.');
     }
 
     public function destroy($id)

@@ -49,9 +49,13 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::post('/checkins', [CheckInsController::class, 'create'])->name('checkins.create');
+    Route::get('/checkins', [CheckInsController::class, 'index'])->name('checkins.index');
+    Route::get('/checkins/create', [CheckInsController::class, 'create'])->name('checkins.create');
+    Route::post('/checkins', [CheckInsController::class, 'store'])->name('checkins.store');
+    Route::put('/checkins/{id}', [CheckInsController::class, 'update'])->name('checkins.update');
     Route::delete('/checkins/{id}', [CheckInsController::class, 'destroy'])->name('checkins.destroy');
 });
+
 
 Route::middleware(['auth'])->group(function () {
 

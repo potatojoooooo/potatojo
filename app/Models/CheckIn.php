@@ -9,7 +9,7 @@ class CheckIn extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'location', 'check_in_notes', 'check_in_time'];
+    protected $fillable = ['user_id', 'location', 'check_in_notes', 'longitude', 'latitude'];
 
     public function user()
     {
