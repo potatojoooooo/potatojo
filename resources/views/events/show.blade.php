@@ -79,7 +79,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <x-primary-button class="text-center focus:outline-none text-white bg-red-700  focus:ring-4 focus:ring-red-300 dark:bg-red-600  dark:focus:ring-red-900 ">
-                                                    <a href="{{ route('events.edit', $event->id)}}" class="text-white">{{ __('Delete') }}</a>
+                                                    <a href="#" class="text-white">{{ __('Delete') }}</a>
                                                 </x-primary-button>
                                             </form>
                                             @else

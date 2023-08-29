@@ -63,8 +63,8 @@ class CheckInsController extends Controller
         $checkIn = CheckIn::find($id);
         if ($checkIn) {
             $checkIn->delete();
-            return redirect()->route('dashboard')->with('success', 'Check-in deleted successfully.');
+            return redirect()->route('checkins.index')->with('success', 'Check-in deleted successfully.');
         }
-        return redirect()->route('dashboard')->with('error', 'Check-in not found.');
+        return redirect()->route('checkins.index')->with('error', 'Check-in not found.');
     }
 }

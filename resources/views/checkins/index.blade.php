@@ -20,14 +20,28 @@
                 <div class="w-full my-4 max-w-sm bg-white rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <div class="flex px-4 pt-4">
                     </div>
-                    <div class="flex flex-col items-center pb-10">
-                        <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ $checkIn->location }}</h5>
-                        <span class="text-ellipsis overflow-hidden mx-10 text-sm text-gray-500 dark:text-gray-400">{{ $checkIn->check_in_notes }}</span>
-                        <span class="text-ellipsis overflow-hidden mx-10 text-sm text-gray-500 dark:text-gray-400">Visited on {{ $checkIn->created_at }}</span>
+                    <div class="flex flex-col items-center mb-5">
+                        <h5 class="text-center mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ $checkIn->location }}</h5>
+                        <span class="my-2 font-extrabold text-ellipsis overflow-hidden mx-10 text-sm text-gray-500 dark:text-gray-400">{{ $checkIn->check_in_notes }}</span>
+                        <span class="text-ellipsis overflow-hidden mx-10 text-sm text-gray-500 dark:text-gray-400">Visited on {{ $checkIn->created_at->timezone('Asia/Kuala_Lumpur')->format('d-m-Y g:i A')  }}</span>
                     </div>
+                    <div class="items-center flex justify-center my-4">
+                        <x-primary-button class="text-center mx-2">
+                            <a href="{{ route('checkins.edit', $checkIn->id)}}">{{ __('Edit') }}</a>
+                        </x-primary-button>
+                        <form method="POST" action="{{ route('checkins.destroy', $checkIn->id) }}" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <x-primary-button class="mx-2 text-center focus:outline-none text-white bg-red-700  focus:ring-4 focus:ring-red-300 dark:bg-red-600  dark:focus:ring-red-900 ">
+                                <a href="#" class="text-white">{{ __('Delete') }}</a>
+                            </x-primary-button>
+                        </form>
+                    </div>
+
                 </div>
                 @endforeach
             </div>
+
         </div>
     </div>
 </x-app-layout>
