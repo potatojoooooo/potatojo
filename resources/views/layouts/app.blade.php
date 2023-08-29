@@ -17,26 +17,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACqi-a5Hr_6Wcf2UhrVAhYqPTwYD2hTvM&libraries=places"></script>
     <script>
-        function initMap() {
-            console.log('Maps JavaScript API loaded.');
-
-            const advancedMarkers = document.querySelectorAll("#marker-click-event-example gmp-advanced-marker");
-            for (const advancedMarker of advancedMarkers) {
-                customElements.whenDefined(advancedMarker.localName).then(async () => {
-                    advancedMarker.addEventListener('gmp-click', async () => {
-                        const {
-                            InfoWindow
-                        } = await google.maps.importLibrary("maps");
-                        const infoWindow = new InfoWindow({
-                            content: advancedMarker .title
-                        });
-                        infoWindow.open({
-                            anchor: advancedMarker
-                        });
-                    });
-                });
-            }
-        }
+        
     </script>
 </head>
 

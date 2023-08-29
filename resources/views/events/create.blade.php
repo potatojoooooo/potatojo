@@ -51,16 +51,21 @@
                             <x-input-label class="mt-4" for="end_time" :value="__('End time')" />
                             <x-text-input class="block mt-1 w-full" type="time" name="end_time" required autofocus autocomplete="time" />
                         </div>
-
+                        <div class="form-group">
+                            <x-input-label class="mt-4" for="end_time" :value="__('Participants needed')" />
+                            <x-text-input class="block mt-1 w-full" type="number" name="participants_needed" required autofocus/>
+                        </div>
+                        <input type="text" id="lat" name="lat">
+                        <input type="text" id="long" name="long">
+                        <input type="text" id="city" name="city">
                         <div class="flex items-center justify-center mt-4">
                             <x-primary-button class="ml-4">
                                 {{ __('Create event') }}
                             </x-primary-button>
                         </div>
-                        <input type="text" id="lat" name="lat">
-                        <input type="text" id="long" name="long">
+
                         <input type="text" id="ip" name="ip">
-                        <input type="text" id="city" name="city">
+
                         <input type="text" id="dtime" name="dtime">
                         <input type="text" id="dkm" name="dkm">
                         <!-- change to type="hidden" -->
@@ -69,5 +74,5 @@
             </div>
         </div>
     </div>
-    
+
 </x-app-layout>

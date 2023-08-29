@@ -15,6 +15,7 @@ class Event extends Model
         'name',
         'description',
         'location',
+        'city',
         'date',
         'start_time',
         'end_time',

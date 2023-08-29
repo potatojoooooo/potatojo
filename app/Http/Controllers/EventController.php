@@ -17,6 +17,7 @@ class EventController extends Controller
         $maxDistance = 25;
         $userLatitude = Session::get('latitude');
         $userLongitude = Session::get('longitude');
+        $userCity = Session::get('city');
         $events = Event::select("*")
             ->get();
 
@@ -34,7 +35,7 @@ class EventController extends Controller
             }
         }
 
-        return view('events.index', ['events' => $filteredEvents]);
+        return view('events.index', ['events' => $filteredEvents, 'userCity' => $userCity]);
     }
 
     public function create()
@@ -57,9 +58,13 @@ class EventController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'location' => $request->location,
+            'city' => $request->city,
+            'longitude' => $request->long,
+            'latitude' => $request->lat,
             'date' => $request->date,
             'start_time' => $request->start_time,
             'end_time' => $request->end_time,
+            'participants_needed' => $request->participants_needed,
             'user_id' => auth()->id(),
         ]);
 
@@ -145,5 +150,39 @@ class EventController extends Controller
         $radius = 3958.756;
 
         return ($res * $radius * 1.609344);
+    }
+
+    public function searchEvents(Request $request)
+    {
+        $search = $request->input('search');
+        if ($request->search) {
+            $events = Event::where('name', 'LIKE', '%' . $request->search . '%')
+                ->orWhere('description', 'LIKE', '%' . $request->search . '%')
+                ->latest()->paginate(15);
+
+            $filteredEvents = [];
+            $maxDistance = 25;
+            $userLatitude = Session::get('latitude');
+            $userLongitude = Session::get('longitude');
+            $userCity = Session::get('city');
+
+            foreach ($events as $event) {
+                $distance = $this->twopoints_on_earth(
+                    $userLatitude,
+                    $userLongitude,
+                    $event->latitude,
+                    $event->longitude
+                );
+
+                if ($distance <= $maxDistance) {
+                    $event->distance = $distance; // Store the distance in the event object
+                    $filteredEvents[] = $event;
+                }
+            }
+
+            return view('events.search', ['events' => $filteredEvents, 'userCity' => $userCity, 'search' => $search]);
+        } else {
+            return redirect()->back()->with('message', 'No event found. :(');
+        }
     }
 }

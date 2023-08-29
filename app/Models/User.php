@@ -26,6 +26,7 @@ class User extends Authenticatable
         'bio',
         'profile_picture',
         'bio',
+        'city',
         'longitude',
         'latitude',
         'allow_location_sharing',

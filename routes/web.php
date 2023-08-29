@@ -54,16 +54,21 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
+
     Route::prefix('events')->group(function () {
         Route::get('/', [EventController::class, 'index'])->name('events.index');
+        Route::get('/search', [EventController::class, 'searchEvents'])->name('events.search');
         Route::get('/create', [EventController::class, 'create'])->name('events.create');
         Route::post('/', [EventController::class, 'store'])->name('events.store');
         Route::get('/{event}', [EventController::class, 'show'])->name('events.show');
         Route::get('/{event}/edit', [EventController::class, 'edit'])->name('events.edit');
         Route::put('/{event}', [EventController::class, 'update'])->name('events.update');
         Route::delete('/{event}', [EventController::class, 'destroy'])->name('events.destroy');
+        
     });
 });
+
+
 
 Route::middleware(['auth'])->group(function () {
     Route::prefix('home')->group(function () {

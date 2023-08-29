@@ -20,7 +20,8 @@
                             url: "/store-coordinates", // Replace with your Laravel route URL
                             data: {
                                 longitude: obj.lon,
-                                latitude: obj.lat
+                                latitude: obj.lat,
+                                city: obj.city
                             },
                             headers: {
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

@@ -21,6 +21,7 @@ class EventsTableSeeder extends Seeder
                 'name' => 'Sample Event',
                 'description' => 'Sample description description description',
                 'location' => 'Sample location location location',
+                'city' => 'Sample city',
                 'date' => '2023-08-25',
                 'start_time' => '14:00:00',
                 'end_time' => '18:00:00',
