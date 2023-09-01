@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('check_ins', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
-            $table->string('location');
-            $table->string('check_in_notes')->nullable();
-            $table->double('longitude', 15, 8);
-            $table->double('latitude', 15, 8);
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -27,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('check_ins');
+        Schema::dropIfExists('categories');
     }
 };

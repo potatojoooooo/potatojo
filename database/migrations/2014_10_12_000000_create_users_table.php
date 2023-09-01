@@ -19,9 +19,11 @@ return new class extends Migration
             $table->string('password');
             $table->string('profile_picture')->nullable();
             $table->string('bio')->nullable();
+            $table->string('city')->default('Kuala Lumpur');
             $table->double('longitude', 15, 8)->nullable();
             $table->double('latitude', 15, 8)->nullable();
-            $table->boolean('allow_location_sharing')->nullable();
+            $table->boolean('allow_location_sharing')->default(false);
+            $table->integer('role')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

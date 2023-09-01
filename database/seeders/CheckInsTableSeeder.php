@@ -14,14 +14,15 @@ class CheckInsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $users = User::whereIn('id', [1, 2, 3])->get(); // Replace with desired user IDs
+        $users = User::whereIn('id', [1, 2, 3, 4, 5, 6])->get(); // Replace with desired user IDs
 
         foreach ($users as $user) {
             CheckIn::create([
                 'user_id' => $user->id,
                 'location' => 'somewhere',
-                'check_in_time' => now(),
                 'check_in_notes' => 'Sample check-in',
+                'longitude' => 101.93800000,
+                'latitude' => 2.72970000
             ]);
         }
     }

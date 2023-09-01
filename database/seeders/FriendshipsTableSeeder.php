@@ -14,7 +14,7 @@ class FriendshipsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $users = User::whereIn('id', [1, 2, 3, 4])->get();
+        $users = User::whereIn('id', [1, 2, 3, 4, 7, 8, 9])->get();
 
         foreach ($users as $user1) {
             foreach ($users as $user2) {
