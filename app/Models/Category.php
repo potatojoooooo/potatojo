@@ -15,4 +15,9 @@ class Category extends Model
     {
         return $this->hasMany(Interest::class);
     }
+
+    public function events()
+    {
+        return $this->hasOne(Event::class);
+    }
 }

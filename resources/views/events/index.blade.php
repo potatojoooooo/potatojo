@@ -67,7 +67,6 @@
                         <td class="px-6 py-4">
                             <div class="event-location" data-location="{{ $event->city }}"></div>
                             <input type="text" class="dkm bg-transparent border-none w-24 " readonly name="dkm">
-
                         </td>
                         <td class="px-6 py-4">
                             <input type="text" class="dtime bg-transparent border-none w-24" readonly name="dtime">

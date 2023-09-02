@@ -67,4 +67,26 @@ class CheckInsController extends Controller
         }
         return redirect()->route('checkins.index')->with('error', 'Check-in not found.');
     }
+
+    public function edit($id)
+    {
+        $checkIn = CheckIn::where('user_id', auth()->id())->findOrFail($id);
+        return view('checkins.edit', ['checkIn' => $checkIn]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'location' => $request->location,
+            'check_in_notes' => $request->check_in_notes,
+        ]);
+
+        $checkIn = CheckIn::where('user_id', auth()->id())->findOrFail($id);
+
+        $checkIn->location = $request->location;
+        $checkIn->check_in_notes = $request->check_in_notes;
+        $checkIn->save();
+
+        return redirect()->route('checkins.index')->with('success', 'Event updated successfully.');
+    }
 }

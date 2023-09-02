@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CheckInsController;
@@ -51,8 +52,9 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/checkins', [CheckInsController::class, 'index'])->name('checkins.index');
     Route::get('/checkins/create', [CheckInsController::class, 'create'])->name('checkins.create');
+    Route::get('/checkins/{id}/edit', [CheckInsController::class, 'edit'])->name('checkins.edit');
+    Route::put('/checkins/{id}', [CheckInsController::class, 'update'])->name('checkins.update');
     Route::post('/checkins', [CheckInsController::class, 'store'])->name('checkins.store');
-    Route::put('/checkins/{id}', [CheckInsController::class, 'update'])->name('checkins.edit');
     Route::delete('/checkins/{id}', [CheckInsController::class, 'destroy'])->name('checkins.destroy');
 });
 
@@ -68,7 +70,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/{event}/edit', [EventController::class, 'edit'])->name('events.edit');
         Route::put('/{event}', [EventController::class, 'update'])->name('events.update');
         Route::delete('/{event}', [EventController::class, 'destroy'])->name('events.destroy');
-        
     });
 });
 
@@ -80,5 +81,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/{user}', [UserController::class, 'show'])->name('users.show');
     });
 });
+
+// Route::get('/utar', [AdminController::class, 'index'])->name('utar.index');
+Route::get('/chartjs', [AdminController::class, 'index'])->name('analysis.index');
+
+
 
 require __DIR__ . '/auth.php';

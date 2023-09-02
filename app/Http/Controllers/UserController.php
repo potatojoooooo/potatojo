@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Stevebauman\Location\Facades\Location;
@@ -16,8 +17,8 @@ class UserController extends Controller
         $maxDistance = 25;
         $userLatitude = Session::get('latitude');
         $userLongitude = Session::get('longitude');
-        
-        foreach($nearbyUsers as $nearbyUser){
+
+        foreach ($nearbyUsers as $nearbyUser) {
             $distance = $this->twopoints_on_earth(
                 $userLatitude,
                 $userLongitude,
@@ -27,11 +28,11 @@ class UserController extends Controller
 
             if ($distance <= $maxDistance) {
                 $nearbyUser->distance = $distance; // Store the distance in the event object
-                $filteredEvents[] = $nearbyUser;
+                $filteredUsers[] = $nearbyUser;
             }
         }
 
-        return view('home', ['nearbyUsers' => $nearbyUsers]);
+        return view('home', ['nearbyUsers' => $filteredUsers]);
     }
 
     public function show($id)

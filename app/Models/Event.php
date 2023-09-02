@@ -22,6 +22,7 @@ class Event extends Model
         'longitude',
         'latitude',
         'participants_needed',
+        'category_id',
         'user_id',
     ];
 
@@ -34,5 +35,10 @@ class Event extends Model
     {
         return $this->belongsToMany(User::class, 'event_participants')
             ->withPivot('participation_status');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }

@@ -23,11 +23,14 @@
                         @csrf
                         <div>
                             <x-input-label :value="__('Location')" />
-                            <x-text-input id="location" class="block mt-1 w-full" type="text" name="location" required autofocus autocomplete="name" />
+                            <x-text-input id="location" class="block mt-1 w-full" type="text" name="location" required autofocus autocomplete="location" />
                         </div>
                         <div>
                             <x-input-label class="mt-4" :value="__('Notes')" />
                             <textarea name="check_in_notes" rows="4" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm block mt-1 w-full" placeholder="Write check-in's note here..." required autofocus></textarea>
+                        </div>
+                        <div>
+                            <x-input-label class="mt-4" :value="__('Check before creating because you are not allowed to edit as it is based on your real time location!')" />
                         </div>
                         <div class="flex items-center justify-center mt-4">
                             <x-primary-button class="ml-4">

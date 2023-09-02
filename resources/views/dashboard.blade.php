@@ -74,9 +74,6 @@
         </div>
     </div>
 
-
-
-
     <!-- Recent check-ins -->
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="flex justify-between"> <!-- Use flex-col to stack items vertically -->
@@ -123,26 +120,4 @@
             @endforeach
         </div>
     </div>
-
-    <!-- <div class="py-4">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mr-4" style="display: inline-flex;">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <h1 class="text-gray-900 dark:text-gray-100">Events</h1>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card">
-                                <img src="" class="card-img-top" alt="">
-                                <div class="card-body">
-                                    <h5 class="card-title">name</h5>
-                                    <p class="card-text">desc</p>
-                                    <a href="" class="btn btn-primary">View</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
 </x-app-layout>

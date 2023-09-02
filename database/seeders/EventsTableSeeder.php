@@ -27,6 +27,7 @@ class EventsTableSeeder extends Seeder
             'latitude' => 3.12901000,
             'participants_needed' => 20,
             'user_id' => 1,
+            'category_id' => 1
         ]);
 
         Event::create([
@@ -41,6 +42,7 @@ class EventsTableSeeder extends Seeder
             'latitude' => 3.04491700,
             'participants_needed' => 20,
             'user_id' => 2,
+            'category_id' => 2
         ]);
 
         Event::create([
@@ -55,6 +57,7 @@ class EventsTableSeeder extends Seeder
             'latitude' => 3.03600000,
             'participants_needed' => 2,
             'user_id' => 3,
+            'category_id' => 3
         ]);
 
         Event::create([
@@ -69,6 +72,7 @@ class EventsTableSeeder extends Seeder
             'latitude' => 2.03010000,
             'participants_needed' => 4,
             'user_id' => 4,
+            'category_id' => 4
         ]);
 
         Event::create([
@@ -83,6 +87,7 @@ class EventsTableSeeder extends Seeder
             'latitude' => 3.04105800,
             'participants_needed' => 4,
             'user_id' => 5,
+            'category_id' => 1
         ]);
     }
 }

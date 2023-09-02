@@ -34,7 +34,6 @@ class EventController extends Controller
                 $filteredEvents[] = $event;
             }
         }
-
         return view('events.index', ['events' => $filteredEvents, 'userCity' => $userCity]);
     }
 
@@ -97,15 +96,6 @@ class EventController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => $request->name,
-            'description' => $request->description,
-            'location' => $request->location,
-            'date' => $request->date,
-            'start_time' => $request->start_time,
-            'end_time' => $request->end_time,
-            'user_id' => auth()->id(),
-        ]);
 
         $event = Event::where('user_id', auth()->id())->findOrFail($id);
 
@@ -115,7 +105,7 @@ class EventController extends Controller
         $event->date = $request->date;
         $event->start_time = $request->start_time;
         $event->end_time = $request->end_time;
-
+        $event->participants_needed = $request -> participants_needed;
         $event->save();
 
         return redirect()->route('events.index')->with('success', 'Event updated successfully.');

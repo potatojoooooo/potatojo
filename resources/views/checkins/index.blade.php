@@ -26,14 +26,19 @@
                         <span class="text-ellipsis overflow-hidden mx-10 text-sm text-gray-500 dark:text-gray-400">Visited on {{ $checkIn->created_at->timezone('Asia/Kuala_Lumpur')->format('d-m-Y g:i A')  }}</span>
                     </div>
                     <div class="items-center flex justify-center my-4">
-                        <x-primary-button class="text-center mx-2">
+                        <!-- <x-primary-button class="text-center mx-2">
                             <a href="{{ route('checkins.edit', $checkIn->id)}}">{{ __('Edit') }}</a>
-                        </x-primary-button>
+                        </x-primary-button> -->
                         <form method="POST" action="{{ route('checkins.destroy', $checkIn->id) }}" style="display: inline;">
                             @csrf
                             @method('DELETE')
                             <x-primary-button class="mx-2 text-center focus:outline-none text-white bg-red-700  focus:ring-4 focus:ring-red-300 dark:bg-red-600  dark:focus:ring-red-900 ">
                                 <a href="#" class="text-white">{{ __('Delete') }}</a>
+                                @if (session('success'))
+                                <div class="bg-green-300 p-2 text-white">
+                                    {{ session('success') }}
+                                </div>
+                                @endif
                             </x-primary-button>
                         </form>
                     </div>
