@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     borderColor: "rgba(75, 192, 192, 1)",
                     borderWidth: 2,
                     fill: true,
-                    backgroundColor: "rgba(255, 255, 255, 0.2)",
+                    backgroundColor: "rgba(23, 37, 84, 0.2)",
                 },
             ],
         },

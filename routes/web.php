@@ -83,7 +83,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // Route::get('/utar', [AdminController::class, 'index'])->name('utar.index');
-Route::get('/chartjs', [AdminController::class, 'index'])->name('analysis.index');
+Route::get('/analysis', [AdminController::class, 'index'])->name('analysis.index');
 
 
 

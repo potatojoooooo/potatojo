@@ -19,6 +19,7 @@ class AdminController extends Controller
         return view('analysis.index', compact('eventCategories', 'eventCounts', 'durations'));
     }
 
+    // pie chart DONE
     public function eventMetrics()
     {
         $eventCategories = Event::join('categories', 'events.category_id', '=', 'categories.id')
@@ -58,7 +59,8 @@ class AdminController extends Controller
     // bar chart for event duration
     public function eventDurationAnalysis()
     {
-        $durations = Event::selectRaw('SUM(TIMESTAMPDIFF(HOUR, start_time, end_time)) as duration_hours')
+        // Select the event dates and their durations
+        $durations = Event::select('date', DB::raw('SUM(TIMESTAMPDIFF(HOUR, start_time, end_time)) as duration_hours'))
             ->groupBy('date')
             ->get();
 

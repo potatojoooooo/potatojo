@@ -17,7 +17,18 @@ document.addEventListener("DOMContentLoaded", function () {
             datasets: [
                 {
                     data: categoryCounts,
-                    backgroundColor: ["red", "blue", "green", "purple"],
+                    backgroundColor: [
+                        "#85586F",
+                        "#D6EFED",
+                        "#957DAD",
+                        "#DEB6AB",
+                        "#FEC8D8",
+                        "#898AA6",
+                        "#F8ECD1",
+                        "#AC7D88",
+                        "#E0BBE4",
+                    ],
+                    borderColor: "rgba(23, 37, 84, 0.2)",
                 },
             ],
         },
