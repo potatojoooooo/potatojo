@@ -14,7 +14,7 @@ class EventController extends Controller
     public function index(Request $request)
     {
         $filteredEvents = [];
-        $maxDistance = 25;
+        $maxDistance = 50;
         $userLatitude = Session::get('latitude');
         $userLongitude = Session::get('longitude');
         $userCity = Session::get('city');
@@ -151,7 +151,7 @@ class EventController extends Controller
                 ->latest()->paginate(15);
 
             $filteredEvents = [];
-            $maxDistance = 25;
+            $maxDistance = 50;
             $userLatitude = Session::get('latitude');
             $userLongitude = Session::get('longitude');
             $userCity = Session::get('city');

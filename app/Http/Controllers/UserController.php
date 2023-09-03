@@ -14,7 +14,7 @@ class UserController extends Controller
     {
         $nearbyUsers = User::where('allow_location_sharing', 1)->get();
         $filteredUsers = [];
-        $maxDistance = 25;
+        $maxDistance = 50;
         $userLatitude = Session::get('latitude');
         $userLongitude = Session::get('longitude');
 

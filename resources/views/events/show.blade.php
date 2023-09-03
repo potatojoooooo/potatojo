@@ -5,13 +5,13 @@
             Event details
         </h2>
     </x-slot>
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-12">
-        <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="display: inline-flex;">
-            <div class="p-6 text-gray-900 dark:text-gray-100">
-                <div class="row ">
+    <div class="grid grid-cols-2 max-w-7xl mx-auto sm:px-6 lg:px-8 py-12">
+        <div class=" bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+            <div class=" p-6 text-gray-900 dark:text-gray-100">
+                <div class="row w-full">
                     <div class="col-md-4">
-                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
-                            <tbody>
+                        <table id="getEvent" class="w-full text-sm text-left text-gray-500 dark:text-gray-400" event-data="{{ json_encode($event) }}">
+                            <tbody class="w-full">
                                 <tr class="border-b bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
                                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
                                         Event:
@@ -20,7 +20,7 @@
                                         {{$event -> name}}
                                     </td>
                                 </tr>
-                                <tr class="border-b bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+                                <tr class="border-b  bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
                                     <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
                                         Description:
                                     </td>
@@ -68,7 +68,7 @@
                                         {{$event -> users -> name}}
                                     </td>
                                 </tr>
-                                <tr class="">
+                                <tr class="text-center	">
                                     <td colspan="2" scope="row" class="px-6 py-4 ">
                                         <div class="justify-between">
                                             @if ($isCreator)
@@ -96,5 +96,32 @@
                 </div>
             </div>
         </div>
+        <div class="m-6" id="map" style="width: 100%; height: 500px;">
+
+        </div>
     </div>
+
+    <script>
+        var getEvent = document.getElementById("getEvent");
+        var event = JSON.parse(getEvent.getAttribute("event-data"));
+
+        function showMap(lat, long) {
+            var coord = {
+                lat: lat,
+                lng: long
+            };
+            var map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 10,
+                center: coord,
+            });
+            new google.maps.Marker({
+                position: coord,
+                map: map
+            });
+        }
+
+        var longitude = event.longitude;
+        var latitude = event.latitude;
+        showMap(latitude, longitude);
+    </script>
 </x-app-layout>

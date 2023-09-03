@@ -38,10 +38,7 @@
                             Location
                         </th>
                         <th scope="col" class="px-6 py-3 text-gray-900 dark:text-gray-100 text-ellipsis">
-                            Distance To
-                        </th>
-                        <th scope="col" class="px-6 py-3 text-gray-900 dark:text-gray-100">
-                            Duration
+                            Distance
                         </th>
                         <th scope="col" class="px-6 py-3 text-gray-900 dark:text-gray-100">
                             Date
@@ -65,11 +62,13 @@
                             {{$event->location}}
                         </td>
                         <td class="px-6 py-4">
-                            <div class="event-location" data-location="{{ $event->city }}"></div>
-                            <input type="text" class="dkm bg-transparent border-none w-24 " readonly name="dkm">
-                        </td>
-                        <td class="px-6 py-4">
-                            <input type="text" class="dtime bg-transparent border-none w-24" readonly name="dtime">
+                            <div class="flex flex-col">
+                                <div class="event-location" data-location="{{ $event->city }}"></div>
+                                <input style="max-width: 102px;" type="text" class="p-0 dkm bg-transparent border-none font-medium whitespace-nowrap" readonly name="dkm">
+                            </div>
+                            <div class="flex flex-col">
+                                <input style="max-width: 102px;" type="text" class="p-0 w-auto dtime bg-transparent border-none" readonly name="dtime">
+                            </div>
                         </td>
                         <td class="px-6 py-4">
                             {{$event->date}}

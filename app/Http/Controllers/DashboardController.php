@@ -11,7 +11,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $friendRequests = (new FriendsController)->friendRequests();
+        $friendRequests = (new FriendsController)->latest();
         $checkIns = (new CheckInsController)->latest();
 
         return view('dashboard', compact('friendRequests', 'checkIns'));

@@ -23,6 +23,21 @@ class FriendsController extends Controller
         return $friendRequests;
     }
 
+    public function latest()
+    {
+        $user = Auth::user();
+
+        // Get friend requests with friendship_status = 2
+        $friendRequests = DB::table('friendships')
+            ->where('user_id_1', $user->id)
+            ->where('friendship_status', 1)
+            ->join('users', 'friendships.user_id_2', '=', 'users.id')
+            ->select('users.*', 'friendships.friendship_status')
+            ->take(3)
+            ->get();
+        return $friendRequests;
+    }
+
     public function acceptFriendRequest(Request $request)
     {
         $user = Auth::user();
