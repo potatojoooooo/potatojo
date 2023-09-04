@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Stevebauman\Location\Facades\Location;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response;
+use Image;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -14,7 +17,7 @@ class UserController extends Controller
     {
         $nearbyUsers = User::where('allow_location_sharing', 1)->get();
         $filteredUsers = [];
-        $maxDistance = 50;
+        $maxDistance = 80;
         $userLatitude = Session::get('latitude');
         $userLongitude = Session::get('longitude');
 
@@ -40,7 +43,13 @@ class UserController extends Controller
         // Find the event by ID
         $user = User::findOrFail($id);
 
-        return view('users.show', ['user' => $user]);
+        $interests = DB::table('user_interests')
+            ->where('user_id', $user->id)
+            ->join('interests', 'interests.id', '=', 'user_interests.interest_id')
+            ->select('interests.name')
+            ->get();
+
+        return view('users.show', ['user' => $user, 'interests' => $interests]);
     }
 
     public function twopoints_on_earth(

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\Category;
 
 class EventController extends Controller
 {
@@ -14,7 +15,7 @@ class EventController extends Controller
     public function index(Request $request)
     {
         $filteredEvents = [];
-        $maxDistance = 50;
+        $maxDistance = 80;
         $userLatitude = Session::get('latitude');
         $userLongitude = Session::get('longitude');
         $userCity = Session::get('city');
@@ -39,7 +40,9 @@ class EventController extends Controller
 
     public function create()
     {
-        return view('events.create');
+        $categories = Category::all();
+
+        return view('events.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -56,14 +59,15 @@ class EventController extends Controller
         $event = new Event([
             'name' => $request->name,
             'description' => $request->description,
-            'location' => $request->location,
-            'city' => $request->city,
+            'location' => $request->locationName,
+            'city' => $request->location,
             'longitude' => $request->long,
             'latitude' => $request->lat,
             'date' => $request->date,
             'start_time' => $request->start_time,
             'end_time' => $request->end_time,
             'participants_needed' => $request->participants_needed,
+            'category_id' => $request->category_id,
             'user_id' => auth()->id(),
         ]);
 
@@ -105,7 +109,7 @@ class EventController extends Controller
         $event->date = $request->date;
         $event->start_time = $request->start_time;
         $event->end_time = $request->end_time;
-        $event->participants_needed = $request -> participants_needed;
+        $event->participants_needed = $request->participants_needed;
         $event->save();
 
         return redirect()->route('events.index')->with('success', 'Event updated successfully.');
@@ -151,7 +155,7 @@ class EventController extends Controller
                 ->latest()->paginate(15);
 
             $filteredEvents = [];
-            $maxDistance = 50;
+            $maxDistance = 80;
             $userLatitude = Session::get('latitude');
             $userLongitude = Session::get('longitude');
             $userCity = Session::get('city');

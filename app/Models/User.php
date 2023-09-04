@@ -30,6 +30,7 @@ class User extends Authenticatable
         'latitude',
         'allow_location_sharing',
         'role',
+        'image'
     ];
 
     /**

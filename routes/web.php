@@ -7,6 +7,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CheckInsController;
 use App\Http\Controllers\FriendsController;
+use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Database\Eloquent\Model;
@@ -85,6 +86,7 @@ Route::middleware(['auth'])->group(function () {
 // Route::get('/utar', [AdminController::class, 'index'])->name('utar.index');
 Route::get('/analysis', [AdminController::class, 'index'])->name('analysis.index');
 
-
+Route::get('upload-image', [ ImageUploadController::class, 'index' ]);
+Route::post('upload-image', [ ImageUploadController::class, 'store' ])->name('image.store');
 
 require __DIR__ . '/auth.php';
