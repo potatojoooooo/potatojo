@@ -32,11 +32,13 @@ class FriendsController extends Controller
             ->where('user_id_1', $user->id)
             ->where('friendship_status', 1)
             ->join('users', 'friendships.user_id_2', '=', 'users.id')
-            ->select('users.*', 'friendships.friendship_status')
+            ->select('users.*', 'friendships.friendship_status', 'users.image as user_image') // Select the user's image column as 'user_image'
             ->take(3)
             ->get();
+
         return $friendRequests;
     }
+
 
     public function acceptFriendRequest(Request $request)
     {

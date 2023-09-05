@@ -108,7 +108,7 @@
             <div class="w-full my-4 max-w-sm bg-white rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-6">
                 <a href="{{ route('users.show', $request->id)}}" class="flex flex-col items-center ">
                     <div class="flex flex-col items-center">
-                        <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="{{ asset('image/default-picture.jpg') }}" alt="{{ $request->name }} image" />
+                        <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="{{ asset($request->user_image ?? 'image/default-picture.jpg') }}" alt="{{ $request->name }} image" />
                         <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ $request->name }}</h5>
                         <p class="text-center overflow-hidden truncate w-80 mx-10 text-sm text-gray-500 dark:text-gray-400">{{ $request->bio }}</p>
                         <div class="flex mt-4 space-x-3 md:mt-6">

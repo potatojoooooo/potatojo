@@ -24,7 +24,7 @@ return new class extends Migration
             $table->double('latitude', 15, 8)->nullable();
             $table->boolean('allow_location_sharing')->default(false);
             $table->integer('role')->default(0);
-            $table->string('image')->nullable();
+            $table->longBlob('image')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

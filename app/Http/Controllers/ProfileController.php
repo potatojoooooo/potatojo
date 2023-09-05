@@ -17,8 +17,16 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+        $user = $request->user();
+        $imagePath = null;
+        
+        if ($user && $user->image) {
+            $imagePath = asset('storage/' . $user->image);
+        }
+
         return view('profile.edit', [
-            'user' => $request->user(),
+            'user' => $user,
+            'imagePath' => $imagePath,
         ]);
     }
 
@@ -31,6 +39,12 @@ class ProfileController extends Controller
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
+        }
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imagePath = $image->store('images', 'public');
+            $request->user()->image = $imagePath;
         }
 
         $request->user()->save();

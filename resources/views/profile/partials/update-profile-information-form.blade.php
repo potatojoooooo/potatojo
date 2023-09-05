@@ -13,13 +13,14 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
 
         <div>
             <x-input-label for="image" :value="__('Image')" />
-            <input type="file" name="image" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
+            <img class="p-2 w-42 h-42 mb-3 rounded-full shadow-lg" src="{{ $imagePath ?? 'image/default-picture.jpg' }}" alt="User Image">
+            <input type="file" name="image" class="pt-2 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
             @error('image')
             <span class="text-red-600 text-sm">{{ $message }}</span>
             @enderror
