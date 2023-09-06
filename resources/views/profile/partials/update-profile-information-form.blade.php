@@ -18,8 +18,12 @@
         @method('patch')
 
         <div>
-            <x-input-label for="image" :value="__('Image')" />
-            <img class="p-2 w-42 h-42 mb-3 rounded-full shadow-lg" src="{{ $imagePath ?? 'image/default-picture.jpg' }}" alt="User Image">
+            <x-input-label class="pb-3" for="image" :value="__('Image')" />
+            @if ($imagePath && Str::endsWith($imagePath, '.jpg'))
+            <img class="w-36 h-36 mb-3 rounded-full shadow-lg" src="{{ asset($imagePath) }}" />
+            @else
+            <img class="w-36 h-36 mb-3 rounded-full shadow-lg" src="{{ asset('image/default-picture.jpg') }}" image />
+            @endif
             <input type="file" name="image" class="pt-2 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
             @error('image')
             <span class="text-red-600 text-sm">{{ $message }}</span>

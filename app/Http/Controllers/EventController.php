@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\EventParticipant;
 use App\Models\Category;
 
 class EventController extends Controller
@@ -85,9 +86,23 @@ class EventController extends Controller
         // Check if the authenticated user is the creator of the event
         $isCreator = $event->user_id === auth()->id();
 
+        // Check if the authenticated user has participated in the event
+        $participation = EventParticipant::where('user_id', auth()->id())
+            ->where('event_id', $event->id)
+            ->select('id', 'user_id', 'event_id', 'participation_status') // Select the desired columns
+            ->first(); // Use first() to retrieve a single record
+
         return view('events.show', [
             'event' => $event,
             'isCreator' => $isCreator,
+            'participation' => $participation,
+        ]);
+
+
+        return view('events.show', [
+            'event' => $event,
+            'isCreator' => $isCreator,
+            'participation' => $participation,
         ]);
     }
 

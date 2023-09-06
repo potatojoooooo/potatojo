@@ -35,21 +35,26 @@ class UserController extends Controller
             }
         }
 
-        return view('home', ['nearbyUsers' => $filteredUsers]);
+        $friendships = (new FriendsController)->friendships();
+
+        return view('home', ['nearbyUsers' => $filteredUsers, 'friendships' => $friendships]);
     }
 
     public function show($id)
     {
-        // Find the event by ID
+       
+        $imagePath = null;
         $user = User::findOrFail($id);
-
+        if ($user && $user->image) {
+            $imagePath = asset('storage/' . $user->image);
+        }
         $interests = DB::table('user_interests')
             ->where('user_id', $user->id)
             ->join('interests', 'interests.id', '=', 'user_interests.interest_id')
             ->select('interests.name')
             ->get();
 
-        return view('users.show', ['user' => $user, 'interests' => $interests]);
+        return view('users.show', ['user' => $user, 'interests' => $interests, 'imagePath'=>$imagePath]);
     }
 
     public function twopoints_on_earth(

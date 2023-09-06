@@ -55,7 +55,8 @@ class User extends Authenticatable
 
     public function events()
     {
-        return $this->hasMany(Event::class, 'user_id');
+        return $this->belongsToMany(Event::class, 'event_participants', 'user_id', 'event_id')
+            ->withPivot('participation_status'); // Include the participation_status field from the pivot table
     }
 
     public function checkins()
@@ -74,9 +75,4 @@ class User extends Authenticatable
         return $this->belongsToMany(Interest::class, 'user_interests');
     }
 
-    public function eventParticipants()
-    {
-        return $this->belongsToMany(Event::class, 'event_participants')
-            ->withPivot('participation_status');
-    }
 }

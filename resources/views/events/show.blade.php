@@ -82,6 +82,11 @@
                                                     <a href="#" class="text-white">{{ __('Delete') }}</a>
                                                 </x-primary-button>
                                             </form>
+                                            @elseif ($participation && $participation -> participation_status == 1)
+                                            <!-- Display the "Join event" button for unjoined participants -->
+                                            <x-primary-button class="text-center text-white dark:bg-red-600  dark:focus:ring-red-900 " id="unjoin-event-button" data-participant-id="{{ $participation->id }}">
+                                                {{ __('Unjoin event') }}
+                                            </x-primary-button>
                                             @else
                                             <x-primary-button class="" id="join-event-button">
                                                 {{ __('Join event') }}
@@ -123,5 +128,46 @@
         var longitude = event.longitude;
         var latitude = event.latitude;
         showMap(latitude, longitude);
+
+        $('#join-event-button').click(function() {
+            console.log(event);
+            // Send an AJAX request to join the event
+            $.ajax({
+                type: 'POST', // or 'PUT' depending on your design
+                url: '/event_participants',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    event_id: event.id,
+                    participation_status: 1 // Customize this based on your logic
+                },
+                success: function(response) {
+                    window.location.href = '/events'
+                    alert("Event joined!");
+                },
+                error: function(error) {
+                    alert("Error: " + error.statusText);
+                }
+            });
+        });
+
+        $('#unjoin-event-button').click(function() {
+            var participantId = $(this).data('participant-id');
+            // Send an AJAX request to unjoin the event
+            $.ajax({
+                type: 'DELETE',
+                url: '/event_participants/' + participantId, // Use the participant ID in the URL
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    event_id: event.id,
+                },
+                success: function(response) {
+                    window.location.href = '/events';
+                    alert("Event unjoined!");
+                },
+                error: function(error) {
+                    alert("Error: " + error.statusText);
+                }
+            });
+        });
     </script>
 </x-app-layout>

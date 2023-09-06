@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\EventParticipantController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CheckInsController;
 use App\Http\Controllers\FriendsController;
@@ -86,6 +87,8 @@ Route::middleware(['auth'])->group(function () {
 // Route::get('/utar', [AdminController::class, 'index'])->name('utar.index');
 Route::get('/analysis', [AdminController::class, 'index'])->name('analysis.index');
 
-
+Route::post('/event_participants', [EventParticipantController::class, 'store'])->name('event_participants.store');
+Route::get('/event_participants', [EventParticipantController::class, 'index'])->name('event_participants.index');
+Route::delete('/event_participants/{id}', [EventParticipantController::class, 'destroy'])->name('event_participants.destroy');
 
 require __DIR__ . '/auth.php';

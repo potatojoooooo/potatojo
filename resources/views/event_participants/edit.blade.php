@@ -26,14 +26,8 @@
             </div>
         </div>
     </x-slot>
-
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-12">
-        <div class="pb-4">
-            <!-- <a href="{{ route('event_participants.index')}}" class="underline text-lg text-gray-800 dark:text-gray-200 leading-tight pb-2 pl-2 mt-auto">view all joined events</a> -->
-        </div>
-        
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>

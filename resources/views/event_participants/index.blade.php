@@ -3,7 +3,7 @@
     <x-slot name="header">
         <div class="flex justify-between">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                {{ __('Events around you') }}
+                {{ __('Events joined') }}
             </h2>
             <div class="flex justify-between items-center">
                 <div class="mx-2 w-80">
@@ -28,10 +28,6 @@
     </x-slot>
 
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-12">
-        <div class="pb-4">
-            <!-- <a href="{{ route('event_participants.index')}}" class="underline text-lg text-gray-800 dark:text-gray-200 leading-tight pb-2 pl-2 mt-auto">view all joined events</a> -->
-        </div>
-        
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
 
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">

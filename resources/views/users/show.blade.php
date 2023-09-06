@@ -10,10 +10,8 @@
             <div class="p-6 text-gray-900 dark:text-gray-100">
                 <div class="row ">
                     <div class="col-md-4">
-
-                        <div class="m-3 text-gray-900 dark:text-gray-100">
-                            {{$user -> image}}
-                            <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="{{ asset('image/default-picture.jpg') }}" alt="{{ $user->name }} image" />
+                        <div class="m-3 text-gray-900 dark:text-gray-100 text-center">
+                            <img class="p-2 w-36 h-36 mb-3 mx-auto rounded-full shadow-lg" src="{{ $imagePath ?? 'image/default-picture.jpg' }}" alt="User Image">
                         </div>
 
                         <div class="m-3 text-gray-900 dark:text-gray-100">

@@ -8,6 +8,26 @@ use Illuminate\Support\Facades\Auth;
 
 class FriendsController extends Controller
 {
+    public function friendships()
+    {
+        $user = Auth::user();
+
+        $friendships = DB::table('friendships')
+            ->where('user_id_1', $user->id)
+            ->where('friendship_status', 2) // Accepted status
+            ->join('users', 'friendships.user_id_2', '=', 'users.id')
+            ->select('users.id', 'users.name', 'users.bio', 'users.image') // Select the desired fields
+            ->get();
+
+        // Retrieve image paths for all friends
+        foreach ($friendships as $friendship) {
+            $friendship->imagePath = asset('storage/' . $friendship->image);
+        }
+
+        return $friendships;
+    }
+
+
     public function friendRequests()
     {
         $user = Auth::user();

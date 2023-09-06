@@ -33,8 +33,8 @@ class Event extends Model
 
     public function participants()
     {
-        return $this->belongsToMany(User::class, 'event_participants')
-            ->withPivot('participation_status');
+        return $this->belongsToMany(User::class, 'event_participants', 'event_id', 'user_id')
+            ->withPivot('participation_status'); // Include the participation_status field from the pivot table
     }
 
     public function category()
