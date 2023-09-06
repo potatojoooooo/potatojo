@@ -75,7 +75,7 @@
     </div>
 
     <!-- Recent check-ins -->
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 pb-8">
         <div class="flex justify-between"> <!-- Use flex-col to stack items vertically -->
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight pb-2 pl-2">Your recent check-ins</h2>
             <a href="{{ route('checkins.index')}}" class="underline text-lg text-gray-800 dark:text-gray-200 leading-tight pb-2 pl-2 mt-auto">view all</a>
@@ -86,8 +86,8 @@
             <div class="w-full my-4 max-w-sm bg-white rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <div class="flex px-4 pt-4">
                 </div>
-                <div class="flex flex-col items-center pb-10">
-                    <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ $checkIn->location }}</h5>
+                <div class="flex flex-col items-center p-5 text-center pt-3">
+                    <h5 class="overflow-hidden mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ $checkIn->location }}</h5>
                     <span class="text-ellipsis overflow-hidden mx-10 text-sm text-gray-500 dark:text-gray-400">{{ $checkIn->check_in_notes }}</span>
                     <span class="text-ellipsis overflow-hidden mx-10 text-sm text-gray-500 dark:text-gray-400">Visited on {{ $checkIn->created_at }}</span>
                 </div>
@@ -96,8 +96,33 @@
         </div>
     </div>
 
+    <!-- Friends' recent check-ins -->
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 pb-8">
+        <div class="flex justify-between">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight pb-2 pl-2">Friends' recent check-ins</h2>
+            <a href="#" class="underline text-lg text-gray-800 dark:text-gray-200 leading-tight pb-2 pl-2 mt-auto">view all</a>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            @foreach($friendsCheckIns as $friendsCheckIn)
+            <div class="w-full my-4 max-w-sm bg-white rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-6">
+                <div class="flex flex-col items-center">
+                <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="{{ $friendsCheckIn['imagePath'] ?? 'image/default-picture.jpg' }}" alt="{{ $friendsCheckIn['name'] }} image" />
+                    <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ $friendsCheckIn['name'] }}</h5>
+                    <div class="flex flex-col items-center pb-2">
+                        <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ $friendsCheckIn['location'] }}</h5>
+                        <span class="text-ellipsis overflow-hidden mx-10 text-sm text-gray-500 dark:text-gray-400">{{ $friendsCheckIn['check_in_notes'] }}</span>
+                        <span class="text-ellipsis overflow-hidden mx-10 text-sm text-gray-500 dark:text-gray-400">Visited on {{ $friendsCheckIn['created_at'] }}</span>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+
+
+
     <!-- Friend requests -->
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 pb-8">
         <div class="flex justify-between">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight pb-2 pl-2">Friend requests</h2>
             <a href="#" class="underline text-lg text-gray-800 dark:text-gray-200 leading-tight pb-2 pl-2 mt-auto">view all</a>

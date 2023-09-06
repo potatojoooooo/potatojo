@@ -6,9 +6,65 @@ use Illuminate\Support\Facades\Session;
 use App\Models\CheckIn;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class CheckInsController extends Controller
 {
+    public function latestFriendsCheckIns()
+    {
+        $user = Auth::user();
+        $localDate = Carbon::now(); // Get the current local date and time
+
+        // Get friend requests with friendship_status = 2 (Friendship accepted)
+        $friends = DB::table('friendships')
+            ->where('user_id_1', $user->id)
+            ->where('friendship_status', 2)
+            ->join('users', 'friendships.user_id_2', '=', 'users.id')
+            ->get();
+
+        // Create an array to hold friend data with check-in information
+        $friendsWithCheckIns = [];
+
+        // Loop through the friend requests to retrieve the latest check-in within a day of the local date
+        foreach ($friends as $friend) {
+            $latestCheckIn = DB::table('check_ins')
+                ->where('user_id', $friend->user_id_2)
+                ->whereDate('created_at', '>=', $localDate->subDay()) // Get check-ins within the last day
+                ->orderBy('created_at', 'desc')
+                ->first();
+        
+            // Get the image path
+            $imagePath = null;
+            if ($friend->image) {
+                $imagePath = asset('storage/' . $friend->image);
+            }
+        
+            // Check if the latest check-in has non-null values
+            if ($latestCheckIn && $latestCheckIn->location !== null && $latestCheckIn->check_in_notes !== null && $latestCheckIn->created_at !== null) {
+                // Create an array with friend data and check-in information
+                $friendData = [
+                    'id' => $friend->id,
+                    'name' => $friend->name,
+                    'email' => $friend->email,
+                    'image' => $imagePath, // Add the image path
+                    'bio' => $friend->bio,
+                    'city' => $friend->city,
+                    'location' => $latestCheckIn->location,
+                    'check_in_notes' => $latestCheckIn->check_in_notes,
+                    'created_at' => $latestCheckIn->created_at,
+                ];
+        
+                // Add the friend data to the array
+                $friendsWithCheckIns[] = $friendData;
+            }
+        }
+
+        // You can now use $friendsWithCheckIns in your view or return it as needed
+
+        return $friendsWithCheckIns;
+    }
+
     public function index()
     {
         $user = Auth::user();

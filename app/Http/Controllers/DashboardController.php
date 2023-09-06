@@ -7,15 +7,20 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+
 class DashboardController extends Controller
 {
     public function index()
     {
         $friendRequests = (new FriendsController)->latest();
         $checkIns = (new CheckInsController)->latest();
-
-        return view('dashboard', compact('friendRequests', 'checkIns'));
+        $friendsCheckIns = (new CheckInsController)->latestFriendsCheckIns();
+        
+        return view('dashboard', compact('friendRequests', 'checkIns', 'friendsCheckIns'));
     }
+
+    
+
 
     public function storeCoordinates(Request $request)
     {
@@ -33,10 +38,10 @@ class DashboardController extends Controller
 
         // Retrieve the user
         $user = User::find(auth()->user()->id);
-        $user -> latitude = $latitude;
-        $user -> longitude = $longitude;
-        $user -> city = $city;
-        $user -> save();
+        $user->latitude = $latitude;
+        $user->longitude = $longitude;
+        $user->city = $city;
+        $user->save();
 
         return response()->json(['message' => 'Coordinates stored in session']);
     }
