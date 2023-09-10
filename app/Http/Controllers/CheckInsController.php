@@ -60,8 +60,6 @@ class CheckInsController extends Controller
             }
         }
 
-        // You can now use $friendsWithCheckIns in your view or return it as needed
-
         return $friendsWithCheckIns;
     }
 

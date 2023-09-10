@@ -20,9 +20,9 @@
                 <div class="w-full my-4 max-w-sm bg-white rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <div class="flex px-4 pt-4">
                     </div>
-                    <div class="flex flex-col items-center mb-5">
+                    <div class="flex flex-col items-center p-5 text-center pt-3">
 
-                        <h5 class="text-center mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ $checkIn->location }}</h5>
+                        <h5 class="overflow-hidden mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ $checkIn->location }}</h5>
                         <span class="my-2 font-extrabold text-ellipsis overflow-hidden mx-10 text-sm text-gray-500 dark:text-gray-400">{{ $checkIn->check_in_notes }}</span>
                         <span class="text-ellipsis overflow-hidden mx-10 text-sm text-gray-500 dark:text-gray-400">Visited on {{ $checkIn->created_at->timezone('Asia/Kuala_Lumpur')->format('d-m-Y g:i A')  }}</span>
                     </div>
@@ -55,7 +55,6 @@
 
 
     <div class="mt-6" id="map" style="width: 100%; height: 500px;"></div>
-    <input readonly>{{auth()->user()->longitude}} </input>
 
     <script>
         var checkIns = document.getElementById("getCheckIns");

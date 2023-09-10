@@ -17,6 +17,7 @@ $(document).ready(function () {
 
         $.getJSON("https://api.ipify.org/?format=json", function (data) {
             let ip = data.ip;
+            console.log(ip);
             jQuery("#ip").val(ip);
             getCity(ip);
         });

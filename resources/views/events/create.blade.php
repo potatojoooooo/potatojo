@@ -79,10 +79,10 @@
                             </x-primary-button>
                         </div>
 
-                        <input type="text" id="ip" name="ip">
-                        <input type="text" id="long" name="long">
-                        <input type="text" id="lat" name="lat">
-                        <input type="text" id="city" name="city">
+                        <input type="hidden" id="ip" name="ip">
+                        <input type="hidden" id="long" name="long">
+                        <input type="hidden" id="lat" name="lat">
+                        <input type="hidden" id="city" name="city">
                         <!-- change to type="hidden" -->
                     </form>
                 </div>

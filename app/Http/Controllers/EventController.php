@@ -52,9 +52,14 @@ class EventController extends Controller
         //     'name' => 'required|string|max:255',
         //     'description' => 'required|string',
         //     'location' => 'required|string',
+        //     'city' => 'required|string',
+        //     'longitude' => 'required|double',
+        //     'latitude' => 'required|double',
         //     'date' => 'required|date',
         //     'start_time' => 'required|date_format:HH:mm',
         //     'end_time' => 'required|date_format:HH:mm|after:start_time',
+        //     'participants_needed' => 'required|integer',
+        //     'category_id' => 'required|integer',
         // ]);
 
         $event = new Event([
@@ -91,12 +96,6 @@ class EventController extends Controller
             ->where('event_id', $event->id)
             ->select('id', 'user_id', 'event_id', 'participation_status') // Select the desired columns
             ->first(); // Use first() to retrieve a single record
-
-        return view('events.show', [
-            'event' => $event,
-            'isCreator' => $isCreator,
-            'participation' => $participation,
-        ]);
 
 
         return view('events.show', [

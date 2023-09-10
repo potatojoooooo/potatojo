@@ -68,7 +68,7 @@ class FriendsController extends Controller
         DB::table('friendships')
             ->where('user_id_1', $user->id)
             ->where('user_id_2', $request->user_id)
-            ->update(['friendship_status' => 2]); // Set to '1' for accepted status
+            ->update(['friendship_status' => 2]); 
 
         return response()->json(['message' => 'Friend request accepted']);
     }

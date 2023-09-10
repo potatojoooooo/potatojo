@@ -5,7 +5,7 @@
             // Step 1: Get user's IP address using ipify API
             $.getJSON("https://api.ipify.org/?format=json", function(data) {
                 let ip = data.ip;
-
+console.log(ip);
                 // Step 2: Use IP geolocation service to get coordinates based on IP address
                 var req = new XMLHttpRequest();
                 req.open("GET", "http://ip-api.com/json/" + ip, true);
@@ -105,7 +105,7 @@
             @foreach($friendsCheckIns as $friendsCheckIn)
             <div class="w-full my-4 max-w-sm bg-white rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-6">
                 <div class="flex flex-col items-center">
-                <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="{{ $friendsCheckIn['imagePath'] ?? 'image/default-picture.jpg' }}" alt="{{ $friendsCheckIn['name'] }} image" />
+                    <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="{{ $friendsCheckIn['imagePath'] ?? 'image/default-picture.jpg' }}" alt="{{ $friendsCheckIn['name'] }} image" />
                     <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ $friendsCheckIn['name'] }}</h5>
                     <div class="flex flex-col items-center pb-2">
                         <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ $friendsCheckIn['location'] }}</h5>

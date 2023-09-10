@@ -48,9 +48,6 @@ class EventParticipantController extends Controller
         $event->participants_needed -= 1;
         $event->save();
 
-        // You can add more logic and error handling as needed
-
-        // Respond with success (you can customize the response format)
         return response()->json(['message' => 'Event participant created successfully']);
     }
 
@@ -71,8 +68,6 @@ class EventParticipantController extends Controller
         $event->participants_needed += 1;
         $event->save();
 
-        // Redirect to the participants index or event details page
-        // You can decide where to redirect based on your application's logic
         return response()->json(['message' => 'Event participant deleted successfully']);
     }
 }
