@@ -10,6 +10,7 @@
         "basement-chat/basement-chat": "^1.1",
         "beyondcode/laravel-websockets": "^1.14",
         "ddeboer/imap": "^1.18",
+        "google/apiclient": "2.15.0",
         "guzzlehttp/guzzle": "^7.2",
         "intervention/image": "^2.7",
         "laravel/framework": "^10.10",
