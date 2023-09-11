@@ -131,6 +131,7 @@
         document.getElementById('signout_button').style.visibility = 'visible';
         document.getElementById('authorize_button').innerText = 'Refresh';
         await listLabels();
+        getMessages();
       };
 
       if (gapi.client.getToken() === null) {
@@ -186,7 +187,6 @@
         'Labels:\n');
       document.getElementById('content').innerText = output;
 
-      getMessages();
     }
 
     function getMessages() {
@@ -199,6 +199,19 @@
         .then((data) => data.json())
         .then((info) => {
           console.log(info);
+
+          Array.from(info.messages).forEach((message) => {
+            fetch(`https://gmail.googleapis.com/gmail/v1/users/me/messages/${message.id}`, {
+                method: 'GET',
+                headers: new Headers({
+                  Authorization: `Bearer ${accessToken}`
+                })
+              })
+              .then((data) => data.json())
+              .then((info) => {
+                console.log(info);
+              })
+          })
         })
     }
   </script>
