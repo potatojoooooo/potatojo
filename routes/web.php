@@ -98,5 +98,5 @@ Route::get('/index', function () {
     return view('index');
 });
 
-Route::get('/emails', [EmailController::class, 'index']);
+Route::get('/emails', [EmailController::class, 'index'])->name('index');
 require __DIR__ . '/auth.php';
