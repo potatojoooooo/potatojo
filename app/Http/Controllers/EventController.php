@@ -204,38 +204,27 @@ class EventController extends Controller
             ->where('user_id', $userId)
             ->pluck('interest_id')
             ->toArray();
-
         $interestCategories = [];
 
-        // Loop through each interest and retrieve its category
         foreach ($userInterests as $interestId) {
-            // Retrieve the category ID for the current interest
             $categoryId = DB::table('interests')
                 ->where('id', $interestId)
                 ->pluck('category_id')
                 ->first();
 
             if ($categoryId) {
-                // Add the interest ID and its corresponding category ID to the array
                 $interestCategories[$interestId] = $categoryId;
             }
         }
 
         $categoryCounts = array_count_values($interestCategories);
-
-        // Find the category ID with the most occurrences
         $maxCount = max($categoryCounts);
         $mostCommonCategoryID = array_search($maxCount, $categoryCounts);
-
-
-
-        // Step 3: Calculate recommendations
         $events = Event::all();
         $recommendedEvents = [];
 
         foreach ($events as $event) {
             if ($event->category_id == $mostCommonCategoryID) {
-                // Add the event to the recommendedEvents array
                 $recommendedEvents[] = $event;
             }
         }
