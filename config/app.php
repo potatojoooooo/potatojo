@@ -169,7 +169,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-        Amranidev\Laracombee\Providers\LaracombeeServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -187,7 +186,6 @@ return [
         // 'Example' => App\Facades\Example::class,
         'Location' => 'Stevebauman\Location\Facades\Location',
         'Image'     => Intervention\Image\Facades\Image::class,
-        'Laracombee' => Amranidev\Laracombee\Facades\LaracombeeFacade::class,
     ])->toArray(),
 
 ];

@@ -94,9 +94,7 @@ Route::post('/event_participants', [EventParticipantController::class, 'store'])
 Route::get('/event_participants', [EventParticipantController::class, 'index'])->name('event_participants.index');
 Route::delete('/event_participants/{id}', [EventParticipantController::class, 'destroy'])->name('event_participants.destroy');
 
-Route::get('/index', function () {
-    return view('index');
-});
+
 
 Route::get('/emails', [EmailController::class, 'index'])->name('index');
 require __DIR__ . '/auth.php';
