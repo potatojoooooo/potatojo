@@ -49,10 +49,10 @@ function calculateDistance() {
     var from = jQuery(".city").val();
     console.log(from);
     var eventRows = document.querySelectorAll(".event-row");
-
+    
     eventRows.forEach(function (row) {
         var to = row.querySelector(".event-location").dataset.location;
-        console.log(to);
+        console.log(from);
         var dtimeInput = row.querySelector(".dtime");
         var dkmInput = row.querySelector(".dkm");
 
@@ -73,6 +73,7 @@ function calculateDistance() {
                     if (response.rows[0].elements[0].status == "ZERO_RESULTS") {
                         console.log("No roads");
                     } else {
+                        console.log(response);
                         var distance =
                             response.rows[0].elements[0].distance.text;
                         var duration =
