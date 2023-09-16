@@ -68,8 +68,21 @@ class FriendsController extends Controller
         DB::table('friendships')
             ->where('user_id_1', $user->id)
             ->where('user_id_2', $request->user_id)
-            ->update(['friendship_status' => 2]); 
+            ->update(['friendship_status' => 2]);
 
         return response()->json(['message' => 'Friend request accepted']);
+    }
+
+    public function deleteFriend(Request $request)
+    {
+        $user = Auth::user();
+
+        // Delete the friendship record
+        DB::table('friendships')
+            ->where('user_id_1', $user->id)
+            ->where('user_id_2', $request->user_id)
+            ->delete();
+
+        return response()->json(['message' => 'Friend request removed']);
     }
 }

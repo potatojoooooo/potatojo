@@ -42,6 +42,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::post('/accept-friend-request', [FriendsController::class, 'acceptFriendRequest'])->name('accept-friend-request');
+Route::delete('/delete-friend-request', [FriendsController::class, 'deleteFriend'])->name('delete-friend-request');
 Route::post('/store-coordinates', [DashboardController::class, 'storeCoordinates']);
 
 
