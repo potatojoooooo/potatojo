@@ -2,7 +2,7 @@
     <header>
 
         <p class="pb-2 pl-2 text-sm text-gray-900">
-            {{ __('This bar chart') }}
+            {{ __('This bar chart shows the total of event durations created') }}
         </p>
     </header>
     

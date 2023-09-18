@@ -45,9 +45,12 @@ class UserController extends Controller
        
         $imagePath = null;
         $user = User::findOrFail($id);
-        if ($user && $user->image) {
+        if ($user && $user->image != null) {
             $imagePath = asset('storage/' . $user->image);
         }
+        // else if($user -> image == null){
+        //     $imagePath = asset('storage/default-picture.jpg');
+        // }
         $interests = DB::table('user_interests')
             ->where('user_id', $user->id)
             ->join('interests', 'interests.id', '=', 'user_interests.interest_id')
