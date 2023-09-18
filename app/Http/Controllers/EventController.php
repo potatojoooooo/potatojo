@@ -230,4 +230,18 @@ class EventController extends Controller
         }
         return $recommendedEvents;
     }
+
+    public function joinedEvents()
+    {
+        $user = Auth::user();
+        $userId = $user->id;
+
+        $joinedEvents = DB::table('event_participants')
+        ->join('events', 'event_participants.event_id', '=', 'events.id')
+        ->where('event_participants.user_id', $userId)
+        ->select('events.*') // Select all columns from the 'events' table
+        ->get();
+
+        return view('events.joinedEvents', ['joinedEvents' => $joinedEvents]);
+    }
 }

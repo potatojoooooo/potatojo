@@ -29,7 +29,7 @@
 
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 pt-12">
         <div class="pb-4">
-            <a href="{{ route('event_participants.index')}}" class="underline text-lg text-gray-800 dark:text-gray-200 leading-tight pb-2 pl-2 mt-auto">view all joined events</a>
+            <a href="{{ route('events.joinedEvents')}}" class="underline text-lg text-gray-800 dark:text-gray-200 leading-tight pb-2 pl-2 mt-auto">view all joined events</a>
         </div>
         <div class="flex justify-between">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight pb-2 pl-2">Recommended events</h2>

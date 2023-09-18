@@ -41,6 +41,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/friend-requests', [FriendsController::class, 'friendRequests'])->name('friendships.index');
 Route::post('/accept-friend-request', [FriendsController::class, 'acceptFriendRequest'])->name('accept-friend-request');
 Route::delete('/delete-friend-request', [FriendsController::class, 'deleteFriend'])->name('delete-friend-request');
 Route::post('/store-coordinates', [DashboardController::class, 'storeCoordinates']);
@@ -70,6 +71,7 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('events')->group(function () {
         Route::get('/', [EventController::class, 'index'])->name('events.index');
         Route::get('/search', [EventController::class, 'searchEvents'])->name('events.search');
+        Route::get('/joinedEvents', [EventController::class, 'joinedEvents'])->name('events.joinedEvents');
         Route::get('/create', [EventController::class, 'create'])->name('events.create');
         Route::post('/', [EventController::class, 'store'])->name('events.store');
         Route::get('/{event}', [EventController::class, 'show'])->name('events.show');

@@ -141,7 +141,7 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 pb-8">
         <div class="flex justify-between">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight pb-2 pl-2">Friend requests</h2>
-            <a href="#" class="underline text-lg text-gray-800 dark:text-gray-200 leading-tight pb-2 pl-2 mt-auto">view all</a>
+            <a href="{{ route('friendships.index')}}" class="underline text-lg text-gray-800 dark:text-gray-200 leading-tight pb-2 pl-2 mt-auto">view all</a>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             @foreach($friendRequests as $request)

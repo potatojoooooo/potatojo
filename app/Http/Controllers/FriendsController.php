@@ -40,7 +40,7 @@ class FriendsController extends Controller
             ->select('users.*', 'friendships.friendship_status')
             ->get();
 
-        return $friendRequests;
+        return view('friendships.index', compact('friendRequests'));
     }
 
     public function latest()
