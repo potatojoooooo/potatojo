@@ -39,6 +39,9 @@
             <th scope="col" class="px-6 py-3 text-gray-900 dark:text-gray-100 text-ellipsis">
               Email Snippet
             </th>
+            <th scope="col" class="px-6 py-3 text-gray-900 dark:text-gray-100 text-ellipsis">
+              Actions
+            </th>
           </tr>
         </thead>
         <tbody id="result">
@@ -58,7 +61,7 @@
 
     const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest';
 
-    const SCOPES = 'https://www.googleapis.com/auth/gmail.readonly';
+    const SCOPES = 'https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/gmail.modify';
 
     let tokenClient;
     let gapiInited = false;
@@ -205,6 +208,19 @@
                 <td class="px-6 py-4">${result[1]}</td>
                 <td class="px-6 py-4">${result[2]}</td>
                 <td class="px-6 py-4"><a target="_blank" href="https://mail.google.com/mail/u/0/#inbox/${messageData.id}">${result[3]}</td>
+                <td class="px-6 py-4"><button onclick="
+                  fetch('https://gmail.googleapis.com/gmail/v1/users/me/messages/${messageData.id}/trash', {
+                    method: 'POST',
+                    headers: new Headers({Authorization: 'Bearer ${accessToken}'})
+                  })
+                  .then((info) => {
+                    console.log(info)
+                    document.getElementById('${messageData.id}').remove()
+                  })
+                  " 
+                
+                  class = 'inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150'>Trash</button></td>
+                
               </tr>
             `;
               });
