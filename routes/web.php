@@ -45,6 +45,7 @@ Route::get('/friend-requests', [FriendsController::class, 'friendRequests'])->na
 Route::post('/accept-friend-request', [FriendsController::class, 'acceptFriendRequest'])->name('accept-friend-request');
 Route::delete('/delete-friend-request', [FriendsController::class, 'deleteFriend'])->name('delete-friend-request');
 Route::post('/store-coordinates', [DashboardController::class, 'storeCoordinates']);
+Route::post('/add-friend', [FriendsController::class, 'addFriend'])->name('add-friend');
 
 
 
@@ -54,6 +55,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/update-location-sharing', [ProfileController::class, 'updateLocationSharing'])
         ->name('update-location-sharing');
+    Route::patch('/update-interests', [ProfileController::class, 'updateInterests'])
+        ->name('update-interests');
 });
 
 Route::middleware('auth')->group(function () {

@@ -42,7 +42,7 @@ class UserController extends Controller
 
     public function show($id)
     {
-       
+
         $imagePath = null;
         $user = User::findOrFail($id);
         if ($user && $user->image != null) {
@@ -57,7 +57,20 @@ class UserController extends Controller
             ->select('interests.name')
             ->get();
 
-        return view('users.show', ['user' => $user, 'interests' => $interests, 'imagePath'=>$imagePath]);
+        $currentUserId = auth()->user()->id;
+        $friendshipStatus = DB::table('friendships')
+            ->where(function ($query) use ($currentUserId, $user) {
+                $query->where('user_id_1', $currentUserId)
+                    ->where('user_id_2', $user->id);
+            })
+            ->orWhere(function ($query) use ($currentUserId, $user) {
+                $query->where('user_id_1', $user->id)
+                    ->where('user_id_2', $currentUserId);
+            })
+            ->pluck('friendship_status')
+            ->first();
+
+        return view('users.show', ['user' => $user, 'interests' => $interests, 'imagePath' => $imagePath, 'friendshipStatus' => $friendshipStatus]);
     }
 
     public function twopoints_on_earth(

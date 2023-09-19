@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\User;
+use App\Models\Interest;
 
 class ProfileController extends Controller
 {
@@ -19,17 +20,45 @@ class ProfileController extends Controller
     {
         $user = $request->user();
         $imagePath = null;
-        
+
         if ($user && $user->image) {
             $imagePath = asset('storage/' . $user->image);
         }
 
+        $interests = Interest::join('user_interests', 'interests.id', '=', 'user_interests.interest_id')
+            ->where('user_interests.user_id', $user->id)
+            ->get();
+
+        $allInterests = Interest::get();
+
         return view('profile.edit', [
             'user' => $user,
             'imagePath' => $imagePath,
+            'interests' => $interests,
+            'allInterests' => $allInterests
         ]);
     }
 
+    public function updateInterests(Request $request)
+    {
+        $user = $request->user();
+        // Validate and update user interests
+        $validatedData = $request->validate([
+            'interests' => 'array', // Ensure 'interests' is an array
+        ]);
+        $selectedInterests = $validatedData['interests'];
+
+        $user->interests()->detach();
+
+        // Insert new records into the pivot table
+        foreach ($selectedInterests as $interestId) {
+            $user->interests()->attach($interestId);
+        }
+
+        // Redirect back with a success message or to a confirmation page
+
+        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+    }
     /**
      * Update the user's profile information.
      */

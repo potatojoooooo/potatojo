@@ -124,6 +124,37 @@
 
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                 <div class="max-w-xl">
+                    <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                        Interests
+                    </h2>
+                    <div class="mt-6 mb-6 text-gray-900 dark:text-gray-100">
+
+                        @foreach($interests as $interest)
+                        <div class="inline-flex items-center mt-1 px-4 py-2 dark:bg-violet-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-violet-950  ">{{$interest -> name}}</div>
+                        @endforeach
+                    </div>
+                    <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                        {{ __("Update your interests here.") }}
+                    </p>
+                    <form action="{{ route('update-interests') }}" method="POST" class=" space-y-6">
+                        @csrf
+                        @method('PATCH')
+                        @foreach($allInterests as $interest)
+                        <label class="inline-flex items-center inline-flex items-center mt-1 px-4 py-2 dark:bg-violet-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-violet-950  ">
+                            <input class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" type="checkbox" name="interests[]" value="{{ $interest->id }}" {{ in_array($interest->id, $interests->pluck('id')->toArray()) ? 'checked' : '' }}>
+
+                            <span class="ml-2">{{ $interest->name }}</span>
+                        </label>
+                        @endforeach
+                        <div class="flex items-center gap-4">
+                            <x-primary-button>{{ __('Save') }}</x-primary-button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+                <div class="max-w-xl">
                     @include('profile.partials.update-password-form')
                 </div>
             </div>

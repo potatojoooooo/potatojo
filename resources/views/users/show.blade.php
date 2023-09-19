@@ -44,13 +44,73 @@
                             <div class="inline-flex items-center px-4 py-2 dark:bg-violet-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-violet-950  ">{{$interest -> name}}</div>
                             @endforeach
                         </div>
-
+                        @if($friendshipStatus == 2)
                         <div class="pt-4">
-                            <a href="#" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add friend</a>
+                            <a href="#" onclick="deleteFriend( '{{ $user->id }}' );" class="text-white inline-flex items-center px-4 py-2 text-sm font-medium text-center bg-white rounded-lg bg-red-700  focus:ring-4 focus:ring-red-300 dark:bg-red-600 dark:focus:ring-red-900">Delete friend</a>
+                        </div>
+                        @elseif($friendshipStatus == 1)
+                        <div class="pt-4">
+                            <a href="#" onclick="acceptFriendRequest( '{{ $user->id }}' );" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Accept friend</a>
+                        </div>
+                        @elseif($friendshipStatus == 3)
+                        <div class="pt-4">
+                            <a href="#"  class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Friendship pending</a>
+                        </div>
+                        @else
+                        <div class="pt-4">
+                            <a href="#" onclick="addFriend( '{{ $user->id }}' );" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add friend</a>
+                            @endif
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+        <script>
+            function deleteFriend(userId) {
+                axios.delete('/delete-friend-request', {
+                        data: {
+                            user_id: userId
+                        } // Pass the data object
+                    })
+                    .then(function(response) {
+                        // Display a success alert
+                        alert(response.data.message);
+                        location.reload();
+                        // You can also update the UI or take other actions if needed
+                    })
+                    .catch(function(error) {
+                        // Handle errors
+                    });
+            }
+
+            function addFriend(userId) {
+                axios.post('/add-friend', {
+                        user_id: userId
+                    })
+                    .then(function(response) {
+                        // Display a success alert
+                        alert(response.data.message);
+                        location.reload();
+                        // You can also update the UI or take other actions if needed
+                    })
+                    .catch(function(error) {
+                        // Handle errors
+                    });
+            }
+
+            function acceptFriendRequest(userId) {
+                axios.post('/accept-friend-request', {
+                        user_id: userId
+                    })
+                    .then(function(response) {
+                        // Display a success alert
+                        alert(response.data.message);
+                        location.reload();
+                        // You can also update the UI or take other actions if needed
+                    })
+                    .catch(function(error) {
+                        // Handle errors
+                    });
+            }
+        </script>
 </x-app-layout>
