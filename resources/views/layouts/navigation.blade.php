@@ -33,7 +33,7 @@
                     </x-nav-link>
                     @endif
                     @if (auth()->user()->role == 2)
-                    <x-nav-link :href="route('analysis.index')" :active="request()->routeIs('analysis.index')">
+                    <x-nav-link :href="route('allEvents')" :active="request()->routeIs('allEvents')">
                         {{ __('All events') }}
                     </x-nav-link>
                     <x-nav-link :href="route('analysis.index')" :active="request()->routeIs('analysis.index')">
