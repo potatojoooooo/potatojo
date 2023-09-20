@@ -95,6 +95,7 @@ Route::middleware(['auth'])->group(function () {
 
 // Route::get('/utar', [AdminController::class, 'index'])->name('utar.index');
 Route::get('/analysis', [AdminController::class, 'index'])->name('analysis.index');
+Route::get('/all-events', [EventController::class, 'allEvents'])->name('allEvents');
 
 Route::post('/event_participants', [EventParticipantController::class, 'store'])->name('event_participants.store');
 Route::get('/event_participants', [EventParticipantController::class, 'index'])->name('event_participants.index');

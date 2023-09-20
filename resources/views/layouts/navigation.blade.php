@@ -14,9 +14,11 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    @if (auth()->user()->role != 2)
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                         {{ __('Home') }}
                     </x-nav-link>
@@ -29,9 +31,15 @@
                     <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
                         {{ __('Emails') }}
                     </x-nav-link>
+                    @endif
+                    @if (auth()->user()->role == 2)
+                    <x-nav-link :href="route('analysis.index')" :active="request()->routeIs('analysis.index')">
+                        {{ __('All events') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('analysis.index')" :active="request()->routeIs('analysis.index')">
                         {{ __('Analysis') }}
                     </x-nav-link>
+                    @endif
                 </div>
 
             </div>

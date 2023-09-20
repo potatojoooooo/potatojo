@@ -13,13 +13,18 @@ use App\Models\Category;
 class EventController extends Controller
 {
 
+    public function allEvents(Request $request)
+    {
+        $events = Event::all();
+
+        return view('allEvents', ['events' => $events]);
+    }
+
     public function index(Request $request)
     {
         $user = Auth::user();
 
-        if ($user->role === 2) {
-            
-        }
+        
         $filteredEvents = [];
         $maxDistance = 80;
         $userLatitude = Session::get('latitude');

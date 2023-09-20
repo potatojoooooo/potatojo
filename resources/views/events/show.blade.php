@@ -75,6 +75,7 @@
                                             <x-primary-button class="text-center">
                                                 <a href="{{ route('events.edit', $event->id)}}">{{ __('Edit') }}</a>
                                             </x-primary-button>
+                                            @elseif (auth()->user()->role == 2 && $isCreator)
                                             <form method="POST" action="{{ route('events.destroy', $event->id) }}" style="display: inline;">
                                                 @csrf
                                                 @method('DELETE')
